@@ -16,7 +16,11 @@ import eventRoute from "./routes/events.js";
 //config and middlewares
 const app = express();
 dotenv.config();
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+  credential: true
+}));
+
 app.use(cookieParser())
 app.use(express.json());
 app.use(helmet());

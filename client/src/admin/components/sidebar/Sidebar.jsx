@@ -4,10 +4,10 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import TaskIcon from '@mui/icons-material/Task';
 import EventIcon from '@mui/icons-material/Event';
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
+// import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
+// import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
+// import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -116,13 +116,13 @@ const Sidebar = () => {
 
 
           <p className="title">USER</p>
-          <li>
+          {/* <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
-          </li>
+          </li> */}
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span onClick={handleClick}>Logout</span>
           </li>
         </ul>
       </div>

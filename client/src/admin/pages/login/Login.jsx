@@ -20,9 +20,9 @@ function Login() {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("https://stay-solutions.herokuapp.com/api/auth/login", credentials)
+      // const res = await axios.post("https://stay-solutions.herokuapp.com/api/auth/login", credentials)
 
-      // const res = await axios.post("/auth/login", credentials)
+      const res = await axios.post("http://localhost:5500/api/auth/login", credentials, { withCredentials: false })
       if (res.data.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
         navigate("/admin")
@@ -42,21 +42,20 @@ function Login() {
           type="text"
           placeholder="username"
           id="username"
-          // onChange={handleChange}
+          onChange={handleChange}
           className="lInput"
         />
         <input
           type="password"
           placeholder="password"
           id="password"
-          // onChange={handleChange}
+          onChange={handleChange}
           className="lInput"
         />
-        {/* <button disabled={loading} onClick={handleClick} className="lButton"> */}
-        <button className="lButton">
+        <button disabled={loading} onClick={handleClick} className="lButton">
           Login
         </button>
-        {/* {error && <span>{error.message}</span>} */}
+        {error && <span>{error.message}</span>}
       </div>
     </div>
   )

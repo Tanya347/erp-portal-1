@@ -2,6 +2,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate
 } from "react-router-dom"
 
 //admin pages
@@ -16,12 +17,17 @@ import NewUpdate from "./admin/pages/newUpdate/NewUpdate"
 import "./admin/style/dark.scss";
 import { useContext } from "react"
 import { DarkModeContext } from "./context/darkModeContext";
-import { hotelColumns, userColumns, roomColumns } from "./admin/datatablesource";
+import { userColumns, taskColumns, updateColumns } from "./admin/datatablesource";
 import { userInputs, taskInputs, updateInputs } from "./admin/formSource"
+import { AuthContext } from "./context/AuthContext";
 
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const { user } = useContext(AuthContext)
+  const RequireAuth = ({ children }) => {
+    return user ? (children) : <Navigate to="/adminLogin" />
+  }
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -29,65 +35,101 @@ function App() {
       <BrowserRouter>
         <Routes>
 
+          {/* login page */}
+          <Route path="/adminLogin" element={
+            <AdminLogin />
+          } />
+
           {/* admin routes */}
           <Route path="/admin">
-            <Route path="login" element={<AdminLogin />} />
 
-            <Route index element={<AdminHome />} />
+            {/* dashboard of admin */}
+            <Route index element={
+              <RequireAuth>
+                <AdminHome />
+              </RequireAuth>
+            } />
+
+            {/* routes for users */}
             <Route path="users">
+
+              {/* list of users */}
               <Route index element={
-                <AdminList column={userColumns} name="User" />
+                <RequireAuth>
+                  <AdminList column={userColumns} name="User" />
+                </RequireAuth>
               } />
 
+              {/* single page for user */}
               <Route path=":userId" element={
-                <Single />
+                <RequireAuth>
+                  <Single />
+                </RequireAuth>
               } />
 
+              {/* create user page */}
               <Route
                 path="new" element={
-                  <NewUser inputs={userInputs} title="Add New User" />
+                  <RequireAuth>
+                    <NewUser inputs={userInputs} title="Add New User" />
+                  </RequireAuth>
                 } />
             </Route>
 
-
             <Route path="tasks">
               <Route index element={
-                <AdminList column={hotelColumns} name="Task" />
+                <RequireAuth>
+                  <AdminList column={taskColumns} name="Task" />
+                </RequireAuth>
               } />
 
               <Route path=":taskId" element={
-                <Single />
+                <RequireAuth>
+                  <Single />
+                </RequireAuth>
               } />
 
               <Route
                 path="new" element={
-                  <NewTask inputs={taskInputs} title="Add New Task" />
+                  <RequireAuth>
+                    <NewTask inputs={taskInputs} title="Add New Task" />
+                  </RequireAuth>
                 } />
             </Route>
 
             <Route path="updates">
               <Route index element={
-                <AdminList column={roomColumns} name="Update" />
+                <RequireAuth>
+                  <AdminList column={updateColumns} name="Update" />
+                </RequireAuth>
               } />
 
               <Route path=":updateId" element={
-                <Single />
+                <RequireAuth>
+                  <Single />
+                </RequireAuth>
               } />
 
               <Route
                 path="new" element={
-                  <NewUpdate inputs={updateInputs} title="Add New Update" />
+                  <RequireAuth>
+                    <NewUpdate inputs={updateInputs} title="Add New Update" />
+                  </RequireAuth>
                 }
               />
             </Route>
 
             <Route path="events">
               <Route index element={
-                <AdminList column={roomColumns} name="Event" />
+                <RequireAuth>
+                  <AdminList column={updateColumns} name="Event" />
+                </RequireAuth>
               } />
 
               <Route path=":eventId" element={
-                <Single />
+                <RequireAuth>
+                  <Single />
+                </RequireAuth>
               } />
             </Route>
           </Route>

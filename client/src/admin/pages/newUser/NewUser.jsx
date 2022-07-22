@@ -8,7 +8,6 @@ import { roles } from "../../formSource"
 
 const NewUser = ({ inputs, title }) => {
 
-  const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -17,31 +16,24 @@ const NewUser = ({ inputs, title }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "upload");
-
     try {
-      const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dnzkakna0/image/upload",
-        data, {
-        withCredentials: false
-      }
-      )
-      const { url } = uploadRes.data;
-      const { public_id } = uploadRes.data;
+
       const newuser = {
-        ...info, img: url, cloud_id: public_id
+        ...info
       }
 
-      axios.post("https://stay-solutions.herokuapp.com/api/auth/register", newuser)
-      // axios.post("http://localhost:8800/api/auth/register", newuser)
+      // axios.post("https://stay-solutions.herokuapp.com/api/auth/register", newuser)
+      axios.post("http://localhost:5500/api/auth/register", newuser, {
+        withCredentials: false
+      })
       navigate(-1)
 
     } catch (error) {
       console.log(error)
     }
   }
+
+  console.log(info)
 
   return (
     <div className="new">
@@ -60,7 +52,7 @@ const NewUser = ({ inputs, title }) => {
                 <label>Taken as GEC</label>
                 <select
                   id="isGEC"
-                // onChange={handleChange}
+                  onChange={handleChange}
                 >
                   <option value={false}>No</option>
                   <option value={true}>Yes</option>
@@ -70,7 +62,7 @@ const NewUser = ({ inputs, title }) => {
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input
-                    // onChange={handleChange} 
+                    onChange={handleChange}
                     type={input.type}
                     placeholder={input.placeholder}
                     id={input.id}
@@ -78,10 +70,22 @@ const NewUser = ({ inputs, title }) => {
                 </div>
               ))}
               <div className="formInput">
+                <label>Year</label>
+                <select
+                  id="year"
+                  onChange={handleChange}
+                >
+                  <option value={1}>1st</option>
+                  <option value={2}>2nd</option>
+                  <option value={3}>3rd</option>
+                  <option value={4}>4th</option>
+                </select>
+              </div>
+              <div className="formInput">
                 <label>Choose a Role</label>
                 <select
-                  id="roleId"
-                // onChange={(e) => setHotelId(e.target.value)}
+                  id="role"
+                  onChange={handleChange}
                 >
                   {roles.map((r) => (
                     <option key={r.id} value={r.value}>{r.role}</option>
@@ -90,9 +94,8 @@ const NewUser = ({ inputs, title }) => {
                 </select>
 
               </div>
-              {/* <button onClick={handleClick}>Send</button> */}
             </form>
-            <button>Send</button>
+            <button onClick={handleClick}>Send</button>
           </div>
         </div>
       </div>

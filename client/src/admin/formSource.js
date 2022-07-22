@@ -30,12 +30,6 @@ export const userInputs = [
     placeholder: "Enter username",
   },
   {
-    id: "year",
-    label: "Year",
-    type: "text",
-    placeholder: "Enter year",
-  },
-  {
     id: "branch",
     label: "Branch",
     type: "text",
@@ -89,26 +83,26 @@ export const roles = [
   {
     id: 1,
     role: "Core",
-    value: "core"
+    value: "Core"
   },
   {
     id: 2,
     role: "Integration Team Member",
-    value: "integ"
+    value: "Integration Team Member"
   },
   {
     id: 3,
     role: "Executive/Joint Executive",
-    value: "eje"
+    value: "Executive/Joint Executive"
   },
   {
     id: 4,
     role: "Associate",
-    value: "associate"
+    value: "Associate"
   },
   {
     id: 5,
     role: "Mentor",
-    value: "mentor"
+    value: "Mentor"
   },
 ]

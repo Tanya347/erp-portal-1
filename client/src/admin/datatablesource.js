@@ -3,30 +3,40 @@ export const userColumns = [
   {
     field: "user",
     headerName: "User",
-    width: 230,
+    width: 150,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"} alt="avatar" />
+          <img className="cellImg" src={params.row.profilePicture || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"} alt="avatar" />
           {params.row.username}
         </div>
       );
     },
   },
   {
-    field: "email",
-    headerName: "Email",
-    width: 230,
-  },
-
-  {
-    field: "country",
-    headerName: "Country",
+    field: "name",
+    headerName: "Name",
     width: 100,
   },
   {
-    field: "city",
-    headerName: "City",
+    field: "email",
+    headerName: "Email",
+    width: 150,
+  },
+
+  {
+    field: "role",
+    headerName: "Role",
+    width: 100,
+  },
+  {
+    field: "year",
+    headerName: "Year",
+    width: 100,
+  },
+  {
+    field: "branch",
+    headerName: "Branch",
     width: 100,
   },
   {
@@ -34,48 +44,53 @@ export const userColumns = [
     headerName: "Phone",
     width: 100,
   },
+  {
+    field: "isGEC",
+    headerName: "GEC",
+    width: 100,
+  },
+  {
+    field: "folderLink",
+    headerName: "Folder Link",
+    width: 100,
+  }
 ];
 
 
-export const hotelColumns = [
+export const taskColumns = [
   { field: "_id", headerName: "ID", width: 250 },
   {
-    field: "name",
-    headerName: "Name",
-    width: 150,
-  },
-  {
-    field: "type",
-    headerName: "Type",
-    width: 100,
-  },
-  {
-    field: "city",
-    headerName: "City",
-    width: 100,
-  },
-];
-
-export const roomColumns = [
-  { field: "_id", headerName: "ID", width: 70 },
-  {
     field: "title",
-    headerName: "Title",
-    width: 230,
+    headerName: "Task",
+    width: 150,
   },
   {
     field: "desc",
     headerName: "Description",
-    width: 200,
-  },
-  {
-    field: "price",
-    headerName: "Price",
     width: 100,
   },
   {
-    field: "maxPeople",
-    headerName: "Max People",
+    field: "assignedTo",
+    headerName: "Assigned To",
     width: 100,
+  },
+  {
+    field: "deadline",
+    headerName: "Deadline",
+    width: 100,
+  },
+];
+
+export const updateColumns = [
+  { field: "_id", headerName: "ID", width: 100 },
+  {
+    field: "title",
+    headerName: "Update",
+    width: 150,
+  },
+  {
+    field: "desc",
+    headerName: "Description",
+    width: 500,
   },
 ];

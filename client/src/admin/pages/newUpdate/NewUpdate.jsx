@@ -2,16 +2,12 @@ import "./newUpdate.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useState } from "react";
-import useFetch from "../../../hooks/useFetch";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const NewUpdate = ({ inputs, title }) => {
+const NewUpdate = ({ inputs }) => {
   const [info, setInfo] = useState({});
-  const [hotelId, setHotelId] = useState(undefined);
-  const [rooms, setRooms] = useState([]);
   const navigate = useNavigate();
-  const { data, loading } = useFetch("/hotels");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -19,17 +15,18 @@ const NewUpdate = ({ inputs, title }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const roomNumbers = rooms.split(",").map((room) =>
-      ({ number: room }));
-    try {
-      // await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers })
 
-      await axios.post(`https://stay-solutions.herokuapp.com/api/rooms/${hotelId}`, { ...info, roomNumbers })
+    try {
+      await axios.post("http://localhost:5500/api/updates", { ...info }, {
+        withCredentials: false
+      })
       navigate(-1)
     } catch (err) {
       console.log(err)
     }
   }
+
+  console.log(info)
 
   return (
     <div className="new">
@@ -49,15 +46,12 @@ const NewUpdate = ({ inputs, title }) => {
                     id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
-                  // onChange={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
               ))}
-
-              {/* <button onClick={handleClick}>Send</button> */}
-
             </form>
-            <button>Send</button>
+            <button onClick={handleClick}>Send</button>
           </div>
         </div>
       </div>
