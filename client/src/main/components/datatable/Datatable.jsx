@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 
-const Datatable = ({ column, name }) => {
+const Datatable = ({ column }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   console.log(path)

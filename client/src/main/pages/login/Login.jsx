@@ -20,18 +20,13 @@ function Login() {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      // const res = await axios.post("https://stay-solutions.herokuapp.com/api/auth/login", credentials)
-
-      const res = await axios.post("http://localhost:5500/api/auth/login", credentials, { withCredentials: false })
-      if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
-        navigate("/admin")
-      } else {
-        dispatch({ type: "LOGIN_FAILURE", payload: { message: "You are not allowed" } })
-
-      }
+      const url = "http://localhost:5500/api/auth/login";
+      // const url = "https://paradive-server.herokuapp.com/api/auth/login";
+      const res = await axios.post(url, credentials, { withCredentials: false });
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      navigate("/");
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data })
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   }
 
