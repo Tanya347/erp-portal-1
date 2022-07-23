@@ -1,8 +1,8 @@
 import "./style/dark.scss";
 import React, { useContext } from "react"
 import { DarkModeContext } from "./context/darkModeContext";
-import AdminRoutes from "./AdminRoutes";
-import MainRoutes from "./MainRoutes";
+import AdminRoutes from "./routes/AdminRoutes";
+import MainRoutes from "./routes/MainRoutes";
 
 
 function App() {

@@ -6,6 +6,7 @@ import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
 import useFetch from "../../../hooks/useFetch";
+import { Link } from "react-router-dom"
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useState } from "react";
@@ -51,9 +52,11 @@ const Navbar = () => {
                 <p>{item.desc.slice(0, 25)}</p>
               </li>
             ))}
-            <li id="more">
-              View all new updates
-            </li>
+            <Link to="/updates">
+              <li id="more">
+                View all new updates
+              </li>
+            </Link>
           </ul>
 
           {/* Menu */}

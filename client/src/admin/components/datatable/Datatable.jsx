@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 
-const Datatable = ({ column, name }) => {
+const Datatable = ({ column }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   console.log(path)
@@ -25,7 +25,6 @@ const Datatable = ({ column, name }) => {
 
       await axios.delete(`http://localhost:5500/api/${path}/${id}`, { withCredentials: false }
       );
-      // await axios.delete(`https://stay-solutions.herokuapp.com/api/${path}/${id}`);
 
       setList(list.filter((item) => item._id !== id));
     } catch (err) {

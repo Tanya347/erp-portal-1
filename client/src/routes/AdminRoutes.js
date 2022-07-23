@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import { AuthContext } from "./context/AuthContext";
-import { userColumns, taskColumns, updateColumns } from "./admin/datatablesource";
-import { userInputs, taskInputs, updateInputs } from "./admin/formSource"
+import { AuthContext } from "../context/AuthContext";
+import { userColumns, taskColumns, updateColumns } from "../admin/datatablesource";
+import { userInputs, taskInputs, updateInputs } from "../admin/formSource"
 
 //admin pages
-import AdminHome from "./admin/pages/home/Home";
-import AdminLogin from "./admin/pages/login/Login"
-import AdminList from "./admin/pages/list/List"
-import AdminSingle from "./admin/pages/single/AdminSingle";
-import NewUser from "./admin/pages/newUser/NewUser";
-import NewTask from "./admin/pages/newTask/NewTask";
-import NewUpdate from "./admin/pages/newUpdate/NewUpdate"
+import AdminHome from "../admin/pages/home/Home";
+import AdminLogin from "../admin/pages/login/Login"
+import AdminList from "../admin/pages/list/List"
+import AdminSingle from "../admin/pages/single/AdminSingle";
+import NewUser from "../admin/pages/newUser/NewUser";
+import NewTask from "../admin/pages/newTask/NewTask";
+import NewUpdate from "../admin/pages/newUpdate/NewUpdate"
 
 function AdminRoutes() {
     const { user } = useContext(AuthContext)
