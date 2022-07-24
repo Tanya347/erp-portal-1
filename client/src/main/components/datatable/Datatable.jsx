@@ -63,10 +63,10 @@ const Datatable = ({ column }) => {
 
   return (
     <div className="datatable">
-      <div className="search">
+      {/* <div className="search">
         <input type="text" placeholder="Search..." />
         <SearchOutlinedIcon />
-      </div>
+      </div> */}
       {/* not required now since create separate buttons in sidebar */}
 
       {/* <div className="datatableTitle">

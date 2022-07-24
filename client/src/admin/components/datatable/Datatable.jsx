@@ -5,25 +5,22 @@ import { useState } from "react";
 import useFetch from "../../../hooks/useFetch.js"
 import { useEffect } from "react";
 import axios from "axios";
+import { userSearchKeys, taskSearchKeys, updateSearchKeys } from "../../datatablesource";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const Datatable = ({ column }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  console.log(path)
   const [list, setList] = useState([]);
   const { data } = useFetch(`/${path}`)
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (path === "userS")
+    if (path === "users")
       setList(data.filter((d) => d.isAdmin === false));
     else
       setList(data)
   }, [data])
-
-
-  console.log(data)
 
   const handleDelete = async (id) => {
     try {
@@ -37,9 +34,7 @@ const Datatable = ({ column }) => {
     }
   };
 
-
-
-  console.log(list)
+  // console.log(list)
 
   const actionColumn = [
     {
@@ -53,9 +48,9 @@ const Datatable = ({ column }) => {
               <div className="viewButton" onClick={() => navigate(`https://${params.row.folderLink}`)}>Folder Link</div>
             }
 
-            <Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
+            {path === "users" && <Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
-            </Link>
+            </Link>}
 
             <div
               className="deleteButton"
@@ -71,10 +66,7 @@ const Datatable = ({ column }) => {
 
   return (
     <div className="datatable">
-      <div className="search">
-        <input type="text" placeholder="Search..." />
-        <SearchOutlinedIcon />
-      </div>
+
       {/* not required now since create separate buttons in sidebar */}
 
       {/* <div className="datatableTitle">
@@ -83,6 +75,7 @@ const Datatable = ({ column }) => {
           Add New
         </Link>
       </div> */}
+
       {<DataGrid
         className="datagrid"
         rows={list}

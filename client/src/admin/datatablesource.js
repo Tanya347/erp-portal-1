@@ -98,3 +98,7 @@ export const updateColumns = [
     width: 500,
   },
 ];
+
+export const userSearchKeys = ["username", "name", "email", "role", "team", "subteam", "year", "branch", "phone"];
+export const taskSearchKeys = ["title", "desc", "assignedTo", "deadline"];
+export const updateSearchKeys = ["title", "desc"];
