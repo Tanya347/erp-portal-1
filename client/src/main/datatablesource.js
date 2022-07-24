@@ -8,12 +8,12 @@ export const taskColumns = [
     {
         field: "desc",
         headerName: "Description",
-        width: 100,
+        width: 150,
     },
     {
         field: "assignedTo",
         headerName: "Assigned To",
-        width: 100,
+        width: 150,
     },
     {
         field: "deadline",

@@ -5,7 +5,7 @@ import { useState } from "react";
 import useFetch from "../../../hooks/useFetch.js"
 import { useEffect } from "react";
 import axios from "axios";
-
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const Datatable = ({ column }) => {
   const location = useLocation();
@@ -16,7 +16,10 @@ const Datatable = ({ column }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setList(data.filter((d) => d.isAdmin === false));
+    if (path === "userS")
+      setList(data.filter((d) => d.isAdmin === false));
+    else
+      setList(data)
   }, [data])
 
 
@@ -68,7 +71,10 @@ const Datatable = ({ column }) => {
 
   return (
     <div className="datatable">
-
+      <div className="search">
+        <input type="text" placeholder="Search..." />
+        <SearchOutlinedIcon />
+      </div>
       {/* not required now since create separate buttons in sidebar */}
 
       {/* <div className="datatableTitle">

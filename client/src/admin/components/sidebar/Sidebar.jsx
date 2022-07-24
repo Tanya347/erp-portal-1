@@ -8,7 +8,7 @@ import EventIcon from '@mui/icons-material/Event';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 // import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 // import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+// import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
@@ -24,6 +24,7 @@ const Sidebar = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log("hi")
     dispatch({ type: "LOGOUT" });
   }
 

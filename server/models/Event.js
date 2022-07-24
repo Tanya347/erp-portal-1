@@ -25,14 +25,16 @@ const EventSchema = new mongoose.Schema({
         required: true
     },
     registerLink: {
-        type: String,
-        required: true
+        type: String
     },
     contact: {
         type: String,
         required: true
     },
     poster: {
+        type: String
+    },
+    cloud_id: {
         type: String
     }
 }, { timestamps: true })
