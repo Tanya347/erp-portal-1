@@ -34,7 +34,7 @@ function AdminRoutes() {
                     } />
 
                     {/* profile page */}
-                    <Route path=":id" element={
+                    <Route path="users/:id" element={
                         <RequireAuth>
                             <Single />
                         </RequireAuth>

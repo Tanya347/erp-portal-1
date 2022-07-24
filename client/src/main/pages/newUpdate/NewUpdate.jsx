@@ -30,7 +30,7 @@ const NewUpdate = ({ inputs }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="newContainer">
         <Navbar />
         <div className="top">

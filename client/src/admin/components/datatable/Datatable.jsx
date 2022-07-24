@@ -1,6 +1,6 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useFetch from "../../../hooks/useFetch.js"
 import { useEffect } from "react";
@@ -13,10 +13,12 @@ const Datatable = ({ column }) => {
   console.log(path)
   const [list, setList] = useState([]);
   const { data } = useFetch(`/${path}`)
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setList(data);
+    setList(data.filter((d) => d.isAdmin === false));
   }, [data])
+
 
   console.log(data)
 
@@ -40,13 +42,17 @@ const Datatable = ({ column }) => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            {path === "users" && <Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
+            {path === "users" &&
+              <div className="viewButton" onClick={() => navigate(`https://${params.row.folderLink}`)}>Folder Link</div>
+            }
+
+            <Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
-            </Link>}
+            </Link>
 
             <div
               className="deleteButton"
@@ -71,7 +77,7 @@ const Datatable = ({ column }) => {
           Add New
         </Link>
       </div> */}
-      <DataGrid
+      {<DataGrid
         className="datagrid"
         rows={list}
         columns={column.concat(actionColumn)}
@@ -79,7 +85,7 @@ const Datatable = ({ column }) => {
         rowsPerPageOptions={[9]}
         // checkboxSelection
         getRowId={row => row._id}
-      />
+      />}
     </div>
   );
 };

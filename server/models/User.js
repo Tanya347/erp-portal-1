@@ -32,6 +32,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    team: {
+      type: String
+    },
+    subteam: {
+      type: String
+    },
     year: {
       type: String,
       required: true

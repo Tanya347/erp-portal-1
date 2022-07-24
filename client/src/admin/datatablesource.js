@@ -23,10 +23,19 @@ export const userColumns = [
     headerName: "Email",
     width: 150,
   },
-
   {
     field: "role",
     headerName: "Role",
+    width: 100,
+  },
+  {
+    field: "team",
+    headerName: "Team",
+    width: 100,
+  },
+  {
+    field: "subteam",
+    headerName: "Sub Team",
     width: 100,
   },
   {
@@ -47,11 +56,6 @@ export const userColumns = [
   {
     field: "isGEC",
     headerName: "GEC",
-    width: 100,
-  },
-  {
-    field: "folderLink",
-    headerName: "Folder Link",
     width: 100,
   }
 ];

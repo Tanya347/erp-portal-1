@@ -8,19 +8,17 @@ import EventIcon from '@mui/icons-material/Event';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 // import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 // import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
+// import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+// import PersonAddIcon from '@mui/icons-material/PersonAdd';
+// import AddTaskIcon from '@mui/icons-material/AddTask';
+// import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 
 import { Link } from "react-router-dom";
-import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 
 const Sidebar = () => {
-  const { Dispatch } = useContext(DarkModeContext);
-  const { user, dispatch } = useContext(AuthContext)
+  const { dispatch } = useContext(AuthContext)
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -38,21 +36,19 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <li>
-              <DashboardIcon className="icon" />
-              <span>Dashboard</span>
-            </li>
-          </Link>
+
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Dashboard</span>
+          </li>
           <p className="title">LISTS</p>
 
           {/* Takes you to list of all tasks created by admin */}
-          <Link to="/tasks" style={{ textDecoration: "none" }}>
-            <li>
-              <TaskIcon className="icon" />
-              <span>Tasks</span>
-            </li>
-          </Link>
+
+          <li>
+            <TaskIcon className="icon" />
+            <span>Tasks</span>
+          </li>
 
           {/* <p className="title">EVALUATION</p>
           <li>
@@ -70,12 +66,7 @@ const Sidebar = () => {
 
 
           <p className="title">USER</p>
-          <Link to={`/${user._id}`} style={{ textDecoration: "none" }}>
-            <li>
-              <AccountCircleOutlinedIcon className="icon" />
-              <span>Profile</span>
-            </li>
-          </Link>
+
           <li>
             <ExitToAppIcon className="icon" />
             <span onClick={handleClick}>Logout</span>

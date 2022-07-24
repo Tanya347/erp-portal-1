@@ -13,23 +13,6 @@
     align-items: center;
     justify-content: space-between;
 
-    .search {
-      display: flex;
-      align-items: center;
-      border: 0.5px solid lightgray;
-      padding: 3px;
-
-      input {
-        border: none;
-        outline: none;
-        background: transparent;
-
-        &::placeholder {
-          font-size: 12px;
-        }
-      }
-    }
-
     .items {
       display: flex;
       align-items: center;
@@ -37,11 +20,11 @@
       ul {
         position: absolute;
         list-style: none;
-        background-color: white;
+        background-color: #edebf4;
         top: 50px;
+        left: 250px;
         width: 200px;
         padding-left: 0;
-        right: 50px;
         -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
         box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         border-radius: 10px;
@@ -51,11 +34,13 @@
         li {
           width: 180px;
           padding: 10px;
+          cursor: pointer;
+          color: #555;
         }
 
         #more {
           color: #7451f8;
-          background-color: #e4dff6;
+          background-color: white;
           cursor: pointer;
           border-radius: 5px;
           transition: all 0.3s ease-in-out;

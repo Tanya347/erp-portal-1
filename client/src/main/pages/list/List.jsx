@@ -6,7 +6,7 @@ import Datatable from "../../components/datatable/Datatable"
 const List = ({ column }) => {
   return (
     <div className="list">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="AdminListContainer">
         <Navbar />
         <Datatable column={column} />
