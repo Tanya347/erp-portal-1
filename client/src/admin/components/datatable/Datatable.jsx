@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { userSearchKeys, taskSearchKeys, updateSearchKeys } from "../../datatablesource";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import Modal from "../modal/Modal";
 
 const Datatable = ({ column }) => {
   const location = useLocation();
@@ -14,6 +15,8 @@ const Datatable = ({ column }) => {
   const [list, setList] = useState([]);
   const { data } = useFetch(`/${path}`)
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+  const [rowid, setRowid] = useState("");
 
   useEffect(() => {
     if (path === "users")
@@ -34,6 +37,11 @@ const Datatable = ({ column }) => {
     }
   };
 
+  const handleClick = (id) => {
+    setOpenModal(true);
+    setRowid(id);
+  }
+
   // console.log(list)
 
   const actionColumn = [
@@ -48,9 +56,9 @@ const Datatable = ({ column }) => {
               <div className="viewButton" onClick={() => navigate(`https://${params.row.folderLink}`)}>Folder Link</div>
             }
 
-            {path === "users" && <Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
+            {(path === "users") ? (<><Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
-            </Link>}
+            </Link></>) : (<div className="viewButton" onClick={() => handleClick(params.row._id)}>View</div>)}
 
             <div
               className="deleteButton"
@@ -85,6 +93,7 @@ const Datatable = ({ column }) => {
         // checkboxSelection
         getRowId={row => row._id}
       />}
+      {openModal && <Modal setOpen={setOpenModal} id={rowid} type={path} />}
     </div>
   );
 };
