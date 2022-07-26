@@ -5,7 +5,7 @@ import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../../context/darkModeContext";
 import { useContext } from "react";
 import useFetch from "../../../hooks/useFetch";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../../context/AuthContext";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -17,6 +17,8 @@ const Navbar = () => {
   const { user } = useContext(AuthContext)
 
   const { dispatch } = useContext(AuthContext)
+
+  const navigate = useNavigate();
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -96,13 +98,14 @@ const Navbar = () => {
           {/* Profile */}
 
           <div className="item">
-            <Link to={`users/${user._id}`}>
-              <img
-                src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="avatar"
-              />
-            </Link>
+            {/* <Link to={`users/${user._id}`}> */}
+            <img
+              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              alt=""
+              className="avatar"
+              onClick={() => navigate(`/users/${user._id}`)}
+            />
+            {/* </Link> */}
           </div>
         </div>
       </div>

@@ -25,45 +25,46 @@ function AdminRoutes() {
                 } />
 
                 {/* main routes */}
-                <Route path="/">
 
-                    {/* dashboard of main */}
-                    <Route index element={
-                        <RequireAuth>
-                            <Home />
-                        </RequireAuth>
-                    } />
+                {/* dashboard of main */}
+                <Route path="/" element={
+                    < RequireAuth >
+                        <Home />
+                    </RequireAuth>
+                } />
 
-                    {/* profile page */}
-                    <Route path="users/:id" element={
-                        <RequireAuth>
-                            <Single />
-                        </RequireAuth>
-                    } />
 
-                    {/* tasks page */}
-                    <Route path="tasks" element={
-                        <RequireAuth>
-                            < List column={taskColumns} />
-                        </RequireAuth>
-                    } />
 
-                    {/* updates page */}
-                    <Route path="updates" element={
-                        <RequireAuth>
-                            < List column={updateColumns} />
-                        </RequireAuth>
-                    } />
 
-                    {/* create events page */}
-                    <Route path="newEvent" element={
-                        <RequireAuth>
-                            <NewEvent inputs={eventInputs} title="Add New Event" />
-                        </RequireAuth>
-                    } />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+                {/* profile page */}
+                <Route path="/users/:id" element={
+                    <RequireAuth>
+                        <Single />
+                    </RequireAuth>
+                } />
+
+                {/* tasks page */}
+                <Route path="/tasks" element={
+                    <RequireAuth>
+                        < List column={taskColumns} />
+                    </RequireAuth>
+                } />
+
+                {/* updates page */}
+                <Route path="/updates" element={
+                    <RequireAuth>
+                        < List column={updateColumns} />
+                    </RequireAuth>
+                } />
+
+                {/* create events page */}
+                <Route path="/newEvent" element={
+                    <RequireAuth>
+                        <NewEvent inputs={eventInputs} title="Add New Event" />
+                    </RequireAuth>
+                } />
+            </Routes >
+        </BrowserRouter >
     )
 }
 

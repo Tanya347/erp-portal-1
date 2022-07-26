@@ -1,12 +1,10 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import { useState } from "react";
 import useFetch from "../../../hooks/useFetch.js"
 import { useEffect } from "react";
 import axios from "axios";
-import { userSearchKeys, taskSearchKeys, updateSearchKeys } from "../../datatablesource";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Modal from "../modal/Modal";
 
 const Datatable = ({ column }) => {
@@ -14,7 +12,6 @@ const Datatable = ({ column }) => {
   const path = location.pathname.split("/")[2];
   const [list, setList] = useState([]);
   const { data } = useFetch(`/${path}`)
-  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [rowid, setRowid] = useState("");
 
@@ -42,8 +39,6 @@ const Datatable = ({ column }) => {
     setRowid(id);
   }
 
-  // console.log(list)
-
   const actionColumn = [
     {
       field: "action",
@@ -53,7 +48,10 @@ const Datatable = ({ column }) => {
         return (
           <div className="cellAction">
             {path === "users" &&
-              <div className="viewButton" onClick={() => navigate(`https://${params.row.folderLink}`)}>Folder Link</div>
+              <a href={params.row.folderLink} rel="noopener" target='_blank'>
+                < div className="viewButton" >Folder Link</div>
+              </a>
+
             }
 
             {(path === "users") ? (<><Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
@@ -66,7 +64,7 @@ const Datatable = ({ column }) => {
             >
               Delete
             </div>
-          </div>
+          </div >
         );
       },
     },
