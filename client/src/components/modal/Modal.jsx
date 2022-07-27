@@ -1,7 +1,6 @@
 import React from 'react'
 import CancelIcon from '@mui/icons-material/Cancel';
-import useFetch from "../../../hooks/useFetch"
-import { useState } from "react"
+import useFetch from "../../hooks/useFetch"
 import "./modal.css"
 
 const Modal = ({ setOpen, id, type }) => {

@@ -1,6 +1,6 @@
 import "./newUser.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../../components/sidebar/Sidebar";
+import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
@@ -38,7 +38,7 @@ const NewUser = ({ inputs, title }) => {
     <div className="new">
       <Sidebar />
       <div className="newContainer">
-        <Navbar />
+        <AdminNavbar />
         <div className="top">
           <h1>{title}</h1>
         </div>

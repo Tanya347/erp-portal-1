@@ -1,6 +1,6 @@
 import "./adminSingle.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../../components/sidebar/Sidebar";
+import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
 // import Chart from "../../components/chart/Chart";
 // import List from "../../components/table/Table";
 import useFetch from "../../../hooks/useFetch";
@@ -15,7 +15,7 @@ const AdminSingle = () => {
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
-        <Navbar />
+        <AdminNavbar />
         <div className="top">
           <div className="left">
             <h1 className="title">Information</h1>

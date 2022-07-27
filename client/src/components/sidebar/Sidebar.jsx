@@ -14,9 +14,9 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 
 import { Link } from "react-router-dom";
-import { DarkModeContext } from "../../../context/darkModeContext";
+import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Sidebar = () => {
   const { Dispatch } = useContext(DarkModeContext);

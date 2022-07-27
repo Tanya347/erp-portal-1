@@ -1,6 +1,6 @@
 import "./newUpdate.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../../components/sidebar/Sidebar";
+import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ const NewUpdate = ({ inputs }) => {
     <div className="new">
       <Sidebar />
       <div className="newContainer">
-        <Navbar />
+        <AdminNavbar />
         <div className="top">
           <h1>Add New Update</h1>
         </div>
