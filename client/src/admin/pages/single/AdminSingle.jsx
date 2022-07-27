@@ -71,7 +71,7 @@ const AdminSingle = () => {
             </div>
 
             <button>Edit</button>
-            <button>Folder Link</button>
+            <button><a href={`${data.folderLink}`} target='_blank' rel="noopener">Folder Link</a></button>
           </div>
           {/* <div className="right">
             <Chart aspect={3 / 1} title="User Spending ( Last 6 Months)" />

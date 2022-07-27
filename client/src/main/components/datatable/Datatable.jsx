@@ -5,15 +5,15 @@ import { useState } from "react";
 import useFetch from "../../../hooks/useFetch.js"
 import { useEffect } from "react";
 import axios from "axios";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-
+import Modal from "../modal/Modal";
 
 const Datatable = ({ column }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  console.log(path)
   const [list, setList] = useState([]);
   const { data } = useFetch(`/${path}`)
+  const [openModal, setOpenModal] = useState(false);
+  const [rowid, setRowid] = useState("");
 
   useEffect(() => {
     setList(data);
@@ -33,9 +33,10 @@ const Datatable = ({ column }) => {
     }
   };
 
-
-
-  console.log(list)
+  const handleClick = (id) => {
+    setOpenModal(true);
+    setRowid(id);
+  }
 
   const actionColumn = [
     {
@@ -45,16 +46,15 @@ const Datatable = ({ column }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            {path === "users" && <Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>}
 
-            <div
+            <div className="viewButton" onClick={() => handleClick(params.row._id)}>View</div>
+
+            {/* <div
               className="deleteButton"
               onClick={() => handleDelete(params.row._id)}
             >
               Delete
-            </div>
+            </div> */}
           </div>
         );
       },
@@ -84,6 +84,7 @@ const Datatable = ({ column }) => {
         // checkboxSelection
         getRowId={row => row._id}
       />
+      {openModal && <Modal setOpen={setOpenModal} id={rowid} type={path} />}
     </div>
   );
 };

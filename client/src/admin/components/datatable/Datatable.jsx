@@ -1,19 +1,19 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import { useState } from "react";
 import useFetch from "../../../hooks/useFetch.js"
 import { useEffect } from "react";
 import axios from "axios";
-import { userSearchKeys, taskSearchKeys, updateSearchKeys } from "../../datatablesource";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import Modal from "../modal/Modal";
 
 const Datatable = ({ column }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [list, setList] = useState([]);
   const { data } = useFetch(`/${path}`)
-  const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+  const [rowid, setRowid] = useState("");
 
   useEffect(() => {
     if (path === "users")
@@ -34,7 +34,10 @@ const Datatable = ({ column }) => {
     }
   };
 
-  // console.log(list)
+  const handleClick = (id) => {
+    setOpenModal(true);
+    setRowid(id);
+  }
 
   const actionColumn = [
     {
@@ -45,12 +48,15 @@ const Datatable = ({ column }) => {
         return (
           <div className="cellAction">
             {path === "users" &&
-              <div className="viewButton" onClick={() => navigate(`https://${params.row.folderLink}`)}>Folder Link</div>
+              <a href={params.row.folderLink} rel="noopener" target='_blank'>
+                < div className="viewButton" >Folder Link</div>
+              </a>
+
             }
 
-            {path === "users" && <Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
+            {(path === "users") ? (<><Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
-            </Link>}
+            </Link></>) : (<div className="viewButton" onClick={() => handleClick(params.row._id)}>View</div>)}
 
             <div
               className="deleteButton"
@@ -58,7 +64,7 @@ const Datatable = ({ column }) => {
             >
               Delete
             </div>
-          </div>
+          </div >
         );
       },
     },
@@ -85,6 +91,7 @@ const Datatable = ({ column }) => {
         // checkboxSelection
         getRowId={row => row._id}
       />}
+      {openModal && <Modal setOpen={setOpenModal} id={rowid} type={path} />}
     </div>
   );
 };

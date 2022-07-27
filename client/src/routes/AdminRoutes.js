@@ -29,115 +29,104 @@ function AdminRoutes() {
                 } />
 
                 {/* admin routes */}
-                <Route path="/admin">
+                {/* dashboard of admin */}
 
-                    {/* dashboard of admin */}
-                    <Route index element={
+                <Route path="/admin" element={
+                    <RequireAuth>
+                        <AdminHome />
+                    </RequireAuth>
+                } />
+
+
+                {/* routes for users */}
+
+                {/* list of users */}
+                <Route path="/admin/users" element={
+                    <RequireAuth>
+                        <AdminList column={userColumns} name="User" />
+                    </RequireAuth>
+                } />
+
+                {/* single page for user */}
+                <Route path="/admin/users/:userId" element={
+                    <RequireAuth>
+                        <AdminSingle />
+                    </RequireAuth>
+                } />
+
+                {/* create user page */}
+                <Route path="/admin/users/new" element={
+                    <RequireAuth>
+                        <NewUser inputs={userInputs} title="Add New User" />
+                    </RequireAuth>
+                } />
+
+
+                {/* routes for tasks */}
+
+                {/* list of tasks */}
+                <Route path="/admin/tasks" element={
+                    <RequireAuth>
+                        <AdminList column={taskColumns} name="Task" />
+                    </RequireAuth>
+                } />
+
+                {/* single page for task */}
+                <Route path="/admin/tasks/:taskId" element={
+                    <RequireAuth>
+                        <AdminSingle />
+                    </RequireAuth>
+                } />
+
+
+                {/* create task page */}
+                <Route path="/admin/tasks/new" element={
+                    <RequireAuth>
+                        <NewTask inputs={taskInputs} title="Add New Task" />
+                    </RequireAuth>
+                } />
+
+
+                {/* routes for updates */}
+                <Route path="/admin/updates" element={
+                    <RequireAuth>
+                        <AdminList column={updateColumns} name="Update" />
+                    </RequireAuth>
+                } />
+
+                {/* single page for task */}
+                <Route path="/admin/updates/:updateId" element={
+                    <RequireAuth>
+                        <AdminSingle />
+                    </RequireAuth>
+                } />
+
+                {/* create task page */}
+                <Route
+                    path="/admin/updates/new" element={
                         <RequireAuth>
-                            <AdminHome />
+                            <NewUpdate inputs={updateInputs} title="Add New Update" />
                         </RequireAuth>
-                    } />
+                    }
+                />
 
-                    {/* routes for users */}
-                    <Route path="users">
+                {/* routes for events */}
 
-                        {/* list of users */}
-                        <Route index element={
-                            <RequireAuth>
-                                <AdminList column={userColumns} name="User" />
-                            </RequireAuth>
-                        } />
+                {/* list of events */}
+                <Route path="/admin/events" element={
+                    <RequireAuth>
+                        <AdminList column={updateColumns} name="Event" />
+                    </RequireAuth>
+                } />
 
-                        {/* single page for user */}
-                        <Route path=":userId" element={
-                            <RequireAuth>
-                                <AdminSingle />
-                            </RequireAuth>
-                        } />
-
-                        {/* create user page */}
-                        <Route
-                            path="new" element={
-                                <RequireAuth>
-                                    <NewUser inputs={userInputs} title="Add New User" />
-                                </RequireAuth>
-                            } />
-
-                    </Route>
-
-                    {/* routes for tasks */}
-                    <Route path="tasks">
-
-                        {/* list of tasks */}
-                        <Route index element={
-                            <RequireAuth>
-                                <AdminList column={taskColumns} name="Task" />
-                            </RequireAuth>
-                        } />
-
-                        {/* single page for task */}
-                        <Route path=":taskId" element={
-                            <RequireAuth>
-                                <AdminSingle />
-                            </RequireAuth>
-                        } />
-
-                        {/* create task page */}
-                        <Route
-                            path="new" element={
-                                <RequireAuth>
-                                    <NewTask inputs={taskInputs} title="Add New Task" />
-                                </RequireAuth>
-                            } />
-                    </Route>
-
-                    {/* routes for updates */}
-                    <Route path="updates">
-
-                        {/* list of updates */}
-                        <Route index element={
-                            <RequireAuth>
-                                <AdminList column={updateColumns} name="Update" />
-                            </RequireAuth>
-                        } />
-
-                        {/* single page for task */}
-                        <Route path=":updateId" element={
-                            <RequireAuth>
-                                <AdminSingle />
-                            </RequireAuth>
-                        } />
-
-                        {/* create task page */}
-                        <Route
-                            path="new" element={
-                                <RequireAuth>
-                                    <NewUpdate inputs={updateInputs} title="Add New Update" />
-                                </RequireAuth>
-                            }
-                        />
-                    </Route>
-
-                    {/* routes for events */}
-                    <Route path="events">
-
-                        {/* list of events */}
-                        <Route index element={
-                            <RequireAuth>
-                                <AdminList column={updateColumns} name="Event" />
-                            </RequireAuth>
-                        } />
-
-                        {/* single page for users */}
-                        <Route path=":eventId" element={
-                            <RequireAuth>
-                                <AdminSingle />
-                            </RequireAuth>
-                        } />
-                    </Route>
-                </Route>
+                {/* single page for users */}
+                <Route path="/admin/events/:eventId" element={
+                    <RequireAuth>
+                        <AdminSingle />
+                    </RequireAuth>
+                } />
             </Routes>
-        </BrowserRouter>
+        </BrowserRouter >
     )
 }
 
