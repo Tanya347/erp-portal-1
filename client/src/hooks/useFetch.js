@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-const API_URL = "https://stay-solutions.herokuapp.com/api"
+const API_URL = ""
 
 axios.defaults.withCredentials = true;
 

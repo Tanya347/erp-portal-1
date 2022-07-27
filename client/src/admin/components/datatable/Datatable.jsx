@@ -43,13 +43,13 @@ const Datatable = ({ column }) => {
     {
       field: "action",
       headerName: "Action",
-      width: 250,
+      width: 300,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             {path === "users" &&
-              <a href={params.row.folderLink} rel="noopener" target='_blank'>
-                < div className="viewButton" >Folder Link</div>
+              <a href={params.row.folderLink} style={{ textDecoration: "none" }} rel="noopener" target='_blank'>
+                < div className="viewButton">Folder Link</div>
               </a>
 
             }
@@ -57,6 +57,10 @@ const Datatable = ({ column }) => {
             {(path === "users") ? (<><Link to={`/admin/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link></>) : (<div className="viewButton" onClick={() => handleClick(params.row._id)}>View</div>)}
+
+            <Link to={`${params.row._id}/edit`} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
 
             <div
               className="deleteButton"

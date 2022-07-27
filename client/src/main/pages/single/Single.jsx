@@ -1,13 +1,20 @@
 import "./single.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 // import Chart from "../../components/chart/Chart";
 // import List from "../../components/table/Table";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import EditIcon from '@mui/icons-material/Edit';
+import FolderIcon from '@mui/icons-material/Folder';
+import useFetch from "../../../hooks/useFetch";
 
 const Single = () => {
-  const { user } = useContext(AuthContext)
+  // window.location.reload();
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const { data } = useFetch(`/users/${id}`)
+  const navigate = useNavigate();
 
   return (
     <div className="single">
@@ -19,57 +26,57 @@ const Single = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src={user.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
+                src={data.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">{user.name}</h1>
+                <h1 className="itemTitle">{data.name}</h1>
                 <div className="detailItem">
                   <span className="itemKey">ID:</span>
-                  <span className="itemValue">{user._id}</span>
+                  <span className="itemValue">{data._id}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Username:</span>
-                  <span className="itemValue">{user.username}</span>
+                  <span className="itemValue">{data.username}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">{user.email}</span>
+                  <span className="itemValue">{data.email}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Phone Number:</span>
-                  <span className="itemValue">{user.phone}</span>
+                  <span className="itemValue">{data.phone}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Branch:</span>
-                  <span className="itemValue">{user.branch}</span>
+                  <span className="itemValue">{data.branch}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Year:</span>
-                  <span className="itemValue">{user.year}</span>
+                  <span className="itemValue">{data.year}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Role:</span>
-                  <span className="itemValue">{user.role}</span>
+                  <span className="itemValue">{data.role}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Team:</span>
-                  <span className="itemValue">{user.team}</span>
+                  <span className="itemValue">{data.team}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Sub Team:</span>
-                  <span className="itemValue">{user.subteam}</span>
+                  <span className="itemValue">{data.subteam}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">GEC:</span>
-                  <span className="itemValue">{(user.isGEC) ? "Yes" : "No"}</span>
+                  <span className="itemValue">{(data.isGEC) ? "Yes" : "No"}</span>
                 </div>
               </div>
             </div>
 
-            <button>Edit</button>
-            <button>Folder Link</button>
+            <EditIcon style={{ height: "20px", paddingRight: "10px", cursor: "pointer" }} onClick={() => navigate("edit")} />
+            <FolderIcon style={{ height: "20px", cursor: "pointer" }} />
           </div>
         </div>
       </div>

@@ -49,3 +49,30 @@ export const eventInputs = [
   }
 ];
 
+export const userInputs = [
+  {
+    id: "name",
+    label: "Name",
+    type: "text",
+    placeholder: "Enter name",
+  },
+  {
+    id: "email",
+    label: "Email",
+    type: "email",
+    placeholder: "Enter email",
+  },
+  {
+    id: "phone",
+    label: "Phone Number",
+    type: "text",
+    placeholder: "Enter phone number",
+  },
+
+  {
+    id: "branch",
+    label: "Branch",
+    type: "text",
+    placeholder: "Enter branch",
+  }
+];

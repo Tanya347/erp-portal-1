@@ -9,15 +9,22 @@ import AdminHome from "../admin/pages/home/Home";
 import AdminLogin from "../admin/pages/login/Login"
 import AdminList from "../admin/pages/list/List"
 import AdminSingle from "../admin/pages/single/AdminSingle";
-import NewUser from "../admin/pages/newUser/NewUser";
-import NewTask from "../admin/pages/newTask/NewTask";
-import NewUpdate from "../admin/pages/newUpdate/NewUpdate"
+import NewUser from "../admin/pages/user/NewUser";
+import NewTask from "../admin/pages/task/NewTask";
+import NewUpdate from "../admin/pages/update/NewUpdate"
+import EditTask from '../admin/pages/task/EditTask';
+import EditUpdate from '../admin/pages/update/EditUpdate';
+import EditUser from '../admin/pages/user/EditUser';
 
 function AdminRoutes() {
     const { user } = useContext(AuthContext)
 
     const RequireAuth = ({ children }) => {
-        return user ? (children) : <Navigate to="/adminLogin" />
+
+        if (user && user.username === "csd-admin")
+            return children;
+        else
+            return <Navigate to="/adminLogin" />
     }
 
     return (
@@ -54,6 +61,13 @@ function AdminRoutes() {
                     </RequireAuth>
                 } />
 
+                {/* edit page for user */}
+                <Route path="/admin/users/:userId/edit" element={
+                    <RequireAuth>
+                        <EditUser title="Update User" />
+                    </RequireAuth>
+                } />
+
                 {/* create user page */}
                 <Route path="/admin/users/new" element={
                     <RequireAuth>
@@ -78,6 +92,12 @@ function AdminRoutes() {
                     </RequireAuth>
                 } />
 
+                {/* edit page for tasks */}
+                <Route path="/admin/tasks/:taskId/edit" element={
+                    <RequireAuth>
+                        <EditTask title="Update Task" />
+                    </RequireAuth>
+                } />
 
                 {/* create task page */}
                 <Route path="/admin/tasks/new" element={
@@ -98,6 +118,13 @@ function AdminRoutes() {
                 <Route path="/admin/updates/:updateId" element={
                     <RequireAuth>
                         <AdminSingle />
+                    </RequireAuth>
+                } />
+
+                {/* edit task for update */}
+                <Route path="/admin/updates/:updateId/edit" element={
+                    <RequireAuth>
+                        <EditUpdate title="Edit Updates" />
                     </RequireAuth>
                 } />
 
