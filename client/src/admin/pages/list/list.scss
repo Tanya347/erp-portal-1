@@ -1,8 +1,8 @@
 .list {
   display: flex;
   width: 100%;
+}
 
-  .AdminListContainer {
-    flex: 6;
-  }
+.list .AdminListContainer {
+  flex: 6;
 }
