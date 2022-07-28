@@ -1,30 +1,25 @@
-import "./newTask.scss";
-import Sidebar from "../../../components/sidebar/Sidebar";
-import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
+import "./newUpdate.scss";
+import Sidebar from "../../components/sidebar/Sidebar";
+import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { roles } from "../../../formSource"
 
-const NewTask = ({ inputs, title }) => {
-
+const NewUpdate = ({ inputs }) => {
   const [info, setInfo] = useState({});
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  }
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    try {
-      const newtask = {
-        ...info,
-      }
 
-      await axios.post("http://localhost:5500/api/tasks", newtask, {
+    try {
+      await axios.post("http://localhost:5500/api/updates", { ...info }, {
         withCredentials: false
-      });
-      // await axios.post("https://stay-solutions.herokuapp.com/api/hotels", newhotel);
+      })
       navigate(-1)
     } catch (err) {
       console.log(err)
@@ -39,7 +34,7 @@ const NewTask = ({ inputs, title }) => {
       <div className="newContainer">
         <AdminNavbar />
         <div className="top">
-          <h1>{title}</h1>
+          <h1>Add New Update</h1>
         </div>
         <div className="bottom">
           <div className="right">
@@ -49,25 +44,12 @@ const NewTask = ({ inputs, title }) => {
                   <label>{input.label}</label>
                   <input
                     id={input.id}
-                    onChange={handleChange}
                     type={input.type}
                     placeholder={input.placeholder}
+                    onChange={handleChange}
                   />
                 </div>
               ))}
-              <div className="formInput">
-                <label>Assigned To</label>
-                <select
-                  id="assignedTo"
-                  onChange={handleChange}
-                >
-                  {roles.map((r) => (
-                    <option key={r.id} value={r.value}>{r.role}</option>
-                  ))}
-
-                </select>
-
-              </div>
             </form>
             <button onClick={handleClick}>Send</button>
           </div>
@@ -77,4 +59,4 @@ const NewTask = ({ inputs, title }) => {
   );
 };
 
-export default NewTask;
+export default NewUpdate;

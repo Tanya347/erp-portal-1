@@ -1,15 +1,21 @@
 import "./editUser.scss";
-import Sidebar from "../../../components/sidebar/Sidebar";
-import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
+import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios"
 import { useNavigate, useLocation } from "react-router-dom";
-import { roles, teams, integ_subteams, team_subteams } from "../../../formSource"
-import useFetch from "../../../hooks/useFetch";
+import { roles, teams, integ_subteams, team_subteams } from "../../formSource"
+import useFetch from "../../hooks/useFetch";
 
-const EditUser = ({ title }) => {
+const EditUser = ({ title, type }) => {
   const location = useLocation();
-  const id = location.pathname.split("/")[3];
+  let id;
+  if (type === "Admin")
+    id = location.pathname.split("/")[3];
+  else
+    id = location.pathname.split("/")[2];
+
   const { data } = useFetch(`/users/${id}`)
   const [info, setInfo] = useState({});
 
@@ -38,9 +44,9 @@ const EditUser = ({ title }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {type === "Admin" && <Sidebar />}
       <div className="newContainer">
-        <AdminNavbar />
+        {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
         <div className="top">
           <h1>{title}</h1>
         </div>
@@ -49,7 +55,7 @@ const EditUser = ({ title }) => {
           <div className="right">
             <form>
 
-              <div className="formInput">
+              {type === "Admin" && <div className="formInput">
                 <label>Taken as GEC</label>
                 <select
                   id="isGEC"
@@ -59,7 +65,7 @@ const EditUser = ({ title }) => {
                   <option value={false}>No</option>
                   <option value={true}>Yes</option>
                 </select>
-              </div>
+              </div>}
 
               <div className="formInput">
                 <label>Name</label>
@@ -94,7 +100,7 @@ const EditUser = ({ title }) => {
                 />
               </div>
 
-              <div className="formInput">
+              {type === "Admin" && <div className="formInput">
                 <label>Username</label>
                 <input
                   onChange={handleChange}
@@ -103,7 +109,7 @@ const EditUser = ({ title }) => {
                   id="username"
                   value={info.username}
                 />
-              </div>
+              </div>}
 
               <div className="formInput">
                 <label>Branch</label>
@@ -116,7 +122,7 @@ const EditUser = ({ title }) => {
                 />
               </div>
 
-              <div className="formInput">
+              {type === "Admin" && <div className="formInput">
                 <label>Folder Link</label>
                 <input
                   onChange={handleChange}
@@ -125,7 +131,7 @@ const EditUser = ({ title }) => {
                   id="folderLink"
                   value={info.folderLink}
                 />
-              </div>
+              </div>}
 
               <div className="formInput">
                 <label>Year</label>
@@ -134,7 +140,7 @@ const EditUser = ({ title }) => {
                   onChange={handleChange}
                   value={info.year}
                 >
-                  <option value={0}>-</option>
+                  <option value={0}></option>
                   <option value="1st">1st</option>
                   <option value="2nd">2nd</option>
                   <option value="3rd">3rd</option>
@@ -142,7 +148,7 @@ const EditUser = ({ title }) => {
                 </select>
               </div>
 
-              <div className="formInput">
+              {type === "Admin" && <div className="formInput">
                 <label>Choose a Team</label>
                 <select
                   id="team"
@@ -153,9 +159,9 @@ const EditUser = ({ title }) => {
                     <option key={t.id} value={t.team}>{t.team}</option>
                   ))}
                 </select>
-              </div>
+              </div>}
 
-              {info.team === "Integration Team" && <div className="formInput">
+              {info.team === "Integration Team" && type === "Admin" && <div className="formInput">
                 <label>Choose a Sub Team</label>
                 <select
                   id="subteam"
@@ -169,7 +175,7 @@ const EditUser = ({ title }) => {
               </div>}
 
               {
-                (info.team === "Adira" || info.team === "Cognito" || info.team === "Eudaimonia" || info.team === "Inayat" || info.team === "Pejas" || info.team === "Sashakt Drishti")
+                type === "Admin" && (info.team === "Adira" || info.team === "Cognito" || info.team === "Eudaimonia" || info.team === "Inayat" || info.team === "Pejas" || info.team === "Sashakt Drishti")
                 && <div className="formInput">
                   <label>Choose a Sub Team</label>
                   <select
@@ -184,7 +190,7 @@ const EditUser = ({ title }) => {
                 </div>
               }
 
-              <div className="formInput">
+              {type === "Admin" && <div className="formInput">
                 <label>Choose a Role</label>
                 <select
                   id="role"
@@ -195,7 +201,7 @@ const EditUser = ({ title }) => {
                     <option key={r.id} value={r.role}>{r.role}</option>
                   ))}
                 </select>
-              </div>
+              </div>}
 
             </form>
             <button onClick={handleClick}>Send</button>

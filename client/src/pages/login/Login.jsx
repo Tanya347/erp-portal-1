@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../../context/AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import "./login.scss"
 
-function Login() {
+function Login({ type }) {
   const [credentials, setCredentials] = useState({
     username: undefined,
     password: undefined
@@ -20,13 +20,21 @@ function Login() {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const url = "http://localhost:5500/api/auth/login";
-      // const url = "https://paradive-server.herokuapp.com/api/auth/login";
-      const res = await axios.post(url, credentials, { withCredentials: false });
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate("/");
+      const res = await axios.post("http://localhost:5500/api/auth/login", credentials, { withCredentials: false })
+      if (type === "Admin") {
+        if (res.data.isAdmin) {
+          dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details })
+          navigate("/admin")
+        } else {
+          dispatch({ type: "LOGIN_FAILURE", payload: { message: "You are not allowed" } })
+        }
+      }
+      else {
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        navigate("/");
+      }
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data })
     }
   }
 

@@ -1,16 +1,18 @@
-import Navbar from "../../../components/navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
+import AdminNavbar from "../../components/adminNavbar/AdminNavbar"
 import "./home.scss";
-import Widget from "../../../components/widget/Widget";
-import Featured from "../../../components/featured/Featured";
-import Chart from "../../../components/chart/Chart";
-import Table from "../../../components/table/Table";
+import Widget from "../../components/widget/Widget";
+import Featured from "../../components/featured/Featured";
+import Chart from "../../components/chart/Chart";
+import Table from "../../components/table/Table";
+import Sidebar from "../../components/sidebar/Sidebar";
 
-const Home = () => {
+const Home = ({ type }) => {
   return (
     <div className="home">
-      {/* <Sidebar /> */}
+      {type === "Admin" && <Sidebar />}
       <div className="AdminHomeContainer">
-        <Navbar />
+        {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
         <div className="widgets">
           <Widget type="user" />
           <Widget type="order" />

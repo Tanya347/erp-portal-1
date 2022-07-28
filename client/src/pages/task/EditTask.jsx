@@ -1,11 +1,11 @@
 import "./editTask.scss";
-import Sidebar from "../../../components/sidebar/Sidebar";
-import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import { roles } from "../../../formSource"
-import useFetch from "../../../hooks/useFetch";
+import { roles } from "../../formSource"
+import useFetch from "../../hooks/useFetch";
 
 const EditTask = ({ title }) => {
   const location = useLocation();

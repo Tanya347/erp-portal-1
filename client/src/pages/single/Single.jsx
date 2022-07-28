@@ -1,26 +1,28 @@
 import "./single.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../../../components/navbar/Navbar";
-// import Chart from "../../components/chart/Chart";
-// import List from "../../components/table/Table";
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
-const Single = () => {
-  // window.location.reload();
+const Single = ({ type }) => {
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
+  let id
+  if (type === "Main")
+    id = location.pathname.split("/")[2];
+  else
+    id = location.pathname.split("/")[3];
   const { data } = useFetch(`/users/${id}`)
   const navigate = useNavigate();
 
   return (
     <div className="single">
-      {/* <Sidebar /> */}
+      {type === "Admin" && <Sidebar />}
+
       <div className="singleContainer">
-        <Navbar />
+        {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
         <div className="top">
           <div className="left">
             <h1 className="title">Information</h1>
