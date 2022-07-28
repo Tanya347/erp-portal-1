@@ -1,5 +1,5 @@
 import "./editUser.scss";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../../../components/navbar/Navbar";
 import { useContext, useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";

@@ -2,14 +2,11 @@ import "./navbar.scss";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-import { DarkModeContext } from "../../../context/darkModeContext";
+import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom"
-import { AuthContext } from "../../../context/AuthContext";
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
   const { Dispatch } = useContext(DarkModeContext);

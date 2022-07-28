@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext";
-import { userColumns, taskColumns, updateColumns } from "../admin/datatablesource";
-import { userInputs, taskInputs, updateInputs } from "../admin/formSource"
+import { userColumns, taskColumns, updateColumns } from "../datatablesource";
+import { userInputs, taskInputs, updateInputs } from "../formSource"
 
 //admin pages
 import AdminHome from "../admin/pages/home/Home";
 import AdminLogin from "../admin/pages/login/Login"
-import AdminList from "../admin/pages/list/List"
+import List from "../pages/list/List"
 import AdminSingle from "../admin/pages/single/AdminSingle";
 import NewUser from "../admin/pages/user/NewUser";
 import NewTask from "../admin/pages/task/NewTask";
@@ -50,7 +50,7 @@ function AdminRoutes() {
                 {/* list of users */}
                 <Route path="/admin/users" element={
                     <RequireAuth>
-                        <AdminList column={userColumns} name="User" />
+                        <List column={userColumns} name="User" type="Admin" />
                     </RequireAuth>
                 } />
 
@@ -81,7 +81,7 @@ function AdminRoutes() {
                 {/* list of tasks */}
                 <Route path="/admin/tasks" element={
                     <RequireAuth>
-                        <AdminList column={taskColumns} name="Task" />
+                        <List column={taskColumns} name="Task" type="Admin" />
                     </RequireAuth>
                 } />
 
@@ -110,7 +110,7 @@ function AdminRoutes() {
                 {/* routes for updates */}
                 <Route path="/admin/updates" element={
                     <RequireAuth>
-                        <AdminList column={updateColumns} name="Update" />
+                        <List column={updateColumns} name="Update" type="Admin" />
                     </RequireAuth>
                 } />
 
@@ -142,7 +142,7 @@ function AdminRoutes() {
                 {/* list of events */}
                 <Route path="/admin/events" element={
                     <RequireAuth>
-                        <AdminList column={updateColumns} name="Event" />
+                        <List column={updateColumns} name="Event" type="Admin" />
                     </RequireAuth>
                 } />
 

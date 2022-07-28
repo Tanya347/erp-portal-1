@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext";
-import { taskColumns, updateColumns } from '../main/datatablesource';
-import { eventInputs, userInputs } from '../main/formSource';
+import { taskColumns, updateColumns } from '../datatablesource';
+import { eventInputs, editUserInputs } from '../formSource';
 
 // Main pages
 import Home from "../main/pages/home/Home";
 import Login from "../main/pages/login/Login"
 import Single from "../main/pages/single/Single"
-import List from '../main/pages/list/List';
+import List from "../pages/list/List"
 import NewEvent from '../main/pages/newEvent/NewEvent';
 import EditUser from '../main/pages/editUser/EditUser'
 
@@ -49,21 +49,21 @@ function AdminRoutes() {
                 {/* edit profile page */}
                 <Route path="/users/:id/edit" element={
                     <RequireAuth>
-                        <EditUser inputs={userInputs} title="Edit Profile" />
+                        <EditUser inputs={editUserInputs} title="Edit Profile" />
                     </RequireAuth>
                 } />
 
                 {/* tasks page */}
                 <Route path="/tasks" element={
                     <RequireAuth>
-                        < List column={taskColumns} />
+                        < List column={taskColumns} type="Main" name="Task" />
                     </RequireAuth>
                 } />
 
                 {/* updates page */}
                 <Route path="/updates" element={
                     <RequireAuth>
-                        < List column={updateColumns} />
+                        < List column={updateColumns} type="Main" name="Update" />
                     </RequireAuth>
                 } />
 

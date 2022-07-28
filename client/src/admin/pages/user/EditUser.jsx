@@ -4,7 +4,7 @@ import AdminNavbar from "../../../components/adminNavbar/AdminNavbar";
 import { useEffect, useState } from "react";
 import axios from "axios"
 import { useNavigate, useLocation } from "react-router-dom";
-import { roles, teams, integ_subteams, team_subteams } from "../../formSource"
+import { roles, teams, integ_subteams, team_subteams } from "../../../formSource"
 import useFetch from "../../../hooks/useFetch";
 
 const EditUser = ({ title }) => {

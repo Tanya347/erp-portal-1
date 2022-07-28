@@ -1,6 +1,6 @@
 import "./single.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar from "../../../components/navbar/Navbar";
 // import Chart from "../../components/chart/Chart";
 // import List from "../../components/table/Table";
 import { useContext } from "react";
