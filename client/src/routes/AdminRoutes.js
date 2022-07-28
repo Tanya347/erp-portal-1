@@ -1,23 +1,39 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext";
-import { userColumns, taskColumns, updateColumns } from "../admin/datatablesource";
-import { userInputs, taskInputs, updateInputs } from "../admin/formSource"
+
+//datatable columns
+import { userColumns } from "../source/datatablesource/userColumns";
+import { eventColumns } from "../source/datatablesource/eventColumns";
+import { taskColumns } from "../source/datatablesource/taskColumns";
+import { updateColumns } from "../source/datatablesource/updateColumns";
+
+//form inputs
+import { userInputs } from "../source/formsource/userInputs"
+import { taskInputs } from "../source/formsource/taskInputs"
+import { updateInputs } from "../source/formsource/updateInputs"
 
 //admin pages
-import AdminHome from "../admin/pages/home/Home";
-import AdminLogin from "../admin/pages/login/Login"
-import AdminList from "../admin/pages/list/List"
-import AdminSingle from "../admin/pages/single/AdminSingle";
-import NewUser from "../admin/pages/newUser/NewUser";
-import NewTask from "../admin/pages/newTask/NewTask";
-import NewUpdate from "../admin/pages/newUpdate/NewUpdate"
+import Home from "../pages/home/Home";
+import AdminLogin from "../pages/login/Login"
+import List from "../pages/list/List"
+import Single from "../pages/single/Single";
+import NewUser from "../pages/user/NewUser";
+import NewTask from "../pages/task/NewTask";
+import NewUpdate from "../pages/update/NewUpdate"
+import EditTask from '../pages/task/EditTask';
+import EditUpdate from '../pages/update/EditUpdate';
+import EditUser from '../pages/user/EditUser';
 
 function AdminRoutes() {
     const { user } = useContext(AuthContext)
 
     const RequireAuth = ({ children }) => {
-        return user ? (children) : <Navigate to="/adminLogin" />
+
+        if (user && user.username === "csd-admin")
+            return children;
+        else
+            return <Navigate to="/adminLogin" />
     }
 
     return (
@@ -25,7 +41,7 @@ function AdminRoutes() {
             <Routes>
                 {/* login page for admin */}
                 <Route path="/adminLogin" element={
-                    <AdminLogin />
+                    <AdminLogin type="Admin" />
                 } />
 
                 {/* admin routes */}
@@ -33,7 +49,7 @@ function AdminRoutes() {
 
                 <Route path="/admin" element={
                     <RequireAuth>
-                        <AdminHome />
+                        <Home type="Admin" />
                     </RequireAuth>
                 } />
 
@@ -43,14 +59,21 @@ function AdminRoutes() {
                 {/* list of users */}
                 <Route path="/admin/users" element={
                     <RequireAuth>
-                        <AdminList column={userColumns} name="User" />
+                        <List column={userColumns} name="User" type="Admin" />
                     </RequireAuth>
                 } />
 
                 {/* single page for user */}
                 <Route path="/admin/users/:userId" element={
                     <RequireAuth>
-                        <AdminSingle />
+                        <Single type="Admin" />
+                    </RequireAuth>
+                } />
+
+                {/* edit page for user */}
+                <Route path="/admin/users/:userId/edit" element={
+                    <RequireAuth>
+                        <EditUser title="Update User" type="Admin" />
                     </RequireAuth>
                 } />
 
@@ -67,17 +90,16 @@ function AdminRoutes() {
                 {/* list of tasks */}
                 <Route path="/admin/tasks" element={
                     <RequireAuth>
-                        <AdminList column={taskColumns} name="Task" />
+                        <List column={taskColumns} name="Task" type="Admin" />
                     </RequireAuth>
                 } />
 
-                {/* single page for task */}
-                <Route path="/admin/tasks/:taskId" element={
+                {/* edit page for tasks */}
+                <Route path="/admin/tasks/:taskId/edit" element={
                     <RequireAuth>
-                        <AdminSingle />
+                        <EditTask title="Update Task" />
                     </RequireAuth>
                 } />
-
 
                 {/* create task page */}
                 <Route path="/admin/tasks/new" element={
@@ -90,14 +112,14 @@ function AdminRoutes() {
                 {/* routes for updates */}
                 <Route path="/admin/updates" element={
                     <RequireAuth>
-                        <AdminList column={updateColumns} name="Update" />
+                        <List column={updateColumns} name="Update" type="Admin" />
                     </RequireAuth>
                 } />
 
-                {/* single page for task */}
-                <Route path="/admin/updates/:updateId" element={
+                {/* edit task for update */}
+                <Route path="/admin/updates/:updateId/edit" element={
                     <RequireAuth>
-                        <AdminSingle />
+                        <EditUpdate title="Edit Updates" />
                     </RequireAuth>
                 } />
 
@@ -115,14 +137,14 @@ function AdminRoutes() {
                 {/* list of events */}
                 <Route path="/admin/events" element={
                     <RequireAuth>
-                        <AdminList column={updateColumns} name="Event" />
+                        <List column={updateColumns} name="Event" type="Admin" />
                     </RequireAuth>
                 } />
 
                 {/* single page for users */}
                 <Route path="/admin/events/:eventId" element={
                     <RequireAuth>
-                        <AdminSingle />
+                        <Single />
                     </RequireAuth>
                 } />
             </Routes>
