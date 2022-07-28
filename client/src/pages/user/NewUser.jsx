@@ -4,7 +4,7 @@ import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import { roles, teams, integ_subteams, team_subteams } from "../../formSource"
+import { roles, teams, integ_subteams, team_subteams } from "../../source/formsource/teamsAndRole"
 
 const NewUser = ({ inputs, title }) => {
 

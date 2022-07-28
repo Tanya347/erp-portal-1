@@ -1,8 +1,15 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext";
-import { taskColumns, updateColumns } from '../datatablesource';
-import { eventInputs } from '../formSource';
+
+//datatable columns
+import { userColumns } from "../source/datatablesource/userColumns";
+import { eventColumns } from "../source/datatablesource/eventColumns";
+import { taskColumns } from "../source/datatablesource/taskColumns";
+import { updateColumns } from "../source/datatablesource/updateColumns";
+
+//form inputs
+import { eventInputs } from '../source/formsource/eventInputs';
 
 // Main pages
 import Home from "../pages/home/Home";
