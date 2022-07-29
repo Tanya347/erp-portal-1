@@ -97,7 +97,7 @@ const Navbar = () => {
           <div className="item">
             {/* <Link to={`users/${user._id}`}> */}
             <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              src={user.profilePicture || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
               alt=""
               className="avatar"
               onClick={() => navigate(`/users/${user._id}`)}

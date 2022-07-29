@@ -14,6 +14,8 @@ const NewUpdate = ({ inputs }) => {
   };
 
   const handleClick = async (e) => {
+
+    const button = document.getElementsByClassName("form-btn")
     e.preventDefault();
 
     try {
@@ -51,7 +53,7 @@ const NewUpdate = ({ inputs }) => {
                 </div>
               ))}
             </form>
-            <button onClick={handleClick}>Send</button>
+            <button onClick={handleClick} class="form-btn">Create Update</button>
           </div>
         </div>
       </div>

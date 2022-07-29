@@ -28,7 +28,7 @@ const Single = ({ type }) => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src={data.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
+                src={data.profilePicture || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
                 alt=""
                 className="itemImg"
               />

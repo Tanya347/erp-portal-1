@@ -15,6 +15,8 @@ const NewTask = ({ inputs, title }) => {
   }
 
   const handleClick = async (e) => {
+    const button = document.getElementsByClassName("form-btn")
+    button.disabled = "true"
     e.preventDefault();
     try {
       const newtask = {
@@ -69,7 +71,7 @@ const NewTask = ({ inputs, title }) => {
 
               </div>
             </form>
-            <button onClick={handleClick}>Send</button>
+            <button onClick={handleClick} className="form-btn">Create Task</button>
           </div>
         </div>
       </div>

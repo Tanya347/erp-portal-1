@@ -22,7 +22,9 @@ const UserSchema = new mongoose.Schema(
     },
     profilePicture: {
       type: String,
-      default: "",
+    },
+    cloud_id: {
+      type: String,
     },
     name: {
       type: String,
