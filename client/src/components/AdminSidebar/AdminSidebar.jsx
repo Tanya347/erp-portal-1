@@ -4,27 +4,24 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import TaskIcon from '@mui/icons-material/Task';
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import EventIcon from '@mui/icons-material/Event';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import CloseIcon from '@mui/icons-material/Close';
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import EditIcon from '@mui/icons-material/Edit';
 
-import "./navSidebar.scss"
+import "./adminSidebar.scss"
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { DarkModeContext } from "../../context/darkModeContext";
 
 
-const NavSidebar = ({ setOpen }) => {
+const AdminSidebar = ({ setOpen }) => {
 
     const { Dispatch } = useContext(DarkModeContext);
-    const { dispatch, user } = useContext(AuthContext)
+    const { dispatch } = useContext(AuthContext)
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -36,7 +33,7 @@ const NavSidebar = ({ setOpen }) => {
             <motion.div animate={{ width: "200px" }} className="sidebar">
                 <ul>
                     <li id='menu'>
-                        <h2 >MAIN MENU</h2>
+                        <h2 >ADMIN MENU</h2>
                         <CloseIcon className='icon' onClick={() => setOpen(false)} />
                     </li>
                     <p className="title">Main</p>
@@ -48,16 +45,32 @@ const NavSidebar = ({ setOpen }) => {
                     </Link>
                     <p className="title">Lists</p>
 
+                    {/* Takes you to list of all registered users */}
+                    <Link to="/admin/users" style={{ textDecoration: "none" }}>
+                        <li>
+                            <PersonOutlineIcon className="icon" />
+                            <span>Users</span>
+                        </li>
+                    </Link>
+
                     {/* Takes you to list of all tasks created by admin */}
-                    <Link to="/tasks" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/tasks" style={{ textDecoration: "none" }}>
                         <li>
                             <TaskIcon className="icon" />
                             <span>Tasks</span>
                         </li>
                     </Link>
 
+                    {/* Takes you to list of all tasks created by admin */}
+                    <Link to="/admin/updates" style={{ textDecoration: "none" }}>
+                        <li>
+                            <NotificationsIcon className="icon" />
+                            <span>Updates</span>
+                        </li>
+                    </Link>
+
                     {/* Takes you to list of all tasks created by teams */}
-                    <Link to="/events" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/events" style={{ textDecoration: "none" }}>
                         <li>
                             <EventIcon className="icon" />
                             <span>Events</span>
@@ -65,36 +78,29 @@ const NavSidebar = ({ setOpen }) => {
                     </Link>
 
                     <p className="title">Create</p>
-                    <Link to="/newEvent" style={{ textDecoration: "none" }}>
-                        {user.subteam === "Technical Team" &&
-                            <li>
-                                <PersonAddIcon className="icon" />
-                                <span>Event</span>
-                            </li>
-                        }
+                    <Link to="/admin/users/new" style={{ textDecoration: "none" }}>
+                        <li>
+                            <PersonAddIcon className="icon" />
+                            <span>User</span>
+                        </li>
                     </Link>
 
-                    <Link to="#" style={{ textDecoration: "none" }}>
+                    <Link to="/admin/tasks/new" style={{ textDecoration: "none" }}>
                         <li>
-                            <ContactSupportIcon className="icon" />
-                            <span>Query</span>
+                            <AddTaskIcon className="icon" />
+                            <span>Tasks</span>
+                        </li>
+                    </Link>
+
+                    <Link to="/admin/updates/new" style={{ textDecoration: "none" }}>
+                        <li>
+                            <NotificationAddIcon className="icon" />
+                            <span>Updates</span>
                         </li>
                     </Link>
 
 
                     <p className="title">User</p>
-                    <Link to={`/users/${user._id}`} style={{ textDecoration: "none" }}>
-                        <li>
-                            <AccountCircleOutlinedIcon className="icon" />
-                            <span>Profile</span>
-                        </li>
-                    </Link>
-                    <Link to={`/users/${user._id}/edit`} style={{ textDecoration: "none" }}>
-                        <li>
-                            <EditIcon className="icon" />
-                            <span>Edit Profile</span>
-                        </li>
-                    </Link>
                     <li>
                         <ExitToAppIcon className="icon" />
                         <span onClick={handleClick}>Logout</span>
@@ -112,8 +118,10 @@ const NavSidebar = ({ setOpen }) => {
                     </div>
                 </ul>
             </motion.div >
+
+
         </div >
     )
 }
 
-export default NavSidebar
+export default AdminSidebar

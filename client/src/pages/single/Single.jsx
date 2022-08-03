@@ -1,12 +1,10 @@
 import "./single.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
-import Sidebar from "../../components/sidebar/Sidebar";
 import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
 import useFetch from "../../hooks/useFetch";
-import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const Single = ({ type }) => {
   const location = useLocation();

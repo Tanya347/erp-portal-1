@@ -1,5 +1,4 @@
 import "./editUser.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
 import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
@@ -8,7 +7,6 @@ import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { useNavigate, useLocation } from "react-router-dom";
 import { roles, teams, integ_subteams, team_subteams } from "../../source/formsource/teamsAndRole"
 import useFetch from "../../hooks/useFetch";
-import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const EditUser = ({ title, type }) => {
 

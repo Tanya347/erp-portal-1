@@ -1,12 +1,10 @@
 import "./newUser.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
 import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios"
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { useNavigate } from "react-router-dom";
 import { roles, teams, integ_subteams, team_subteams } from "../../source/formsource/teamsAndRole"
-import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const NewUser = ({ inputs, title }) => {
   const [file, setFile] = useState("");

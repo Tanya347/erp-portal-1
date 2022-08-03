@@ -1,12 +1,10 @@
 import "./editUpdate.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
 import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useEffect } from "react";
-import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 
 const EditUpdate = ({ title }) => {
