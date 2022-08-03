@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { roles } from "../../source/formsource/teamsAndRole"
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const NewTask = ({ inputs, title }) => {
 
@@ -15,6 +16,8 @@ const NewTask = ({ inputs, title }) => {
   }
 
   const handleClick = async (e) => {
+    const button = document.getElementsByClassName("form-btn")
+    button.disabled = "true"
     e.preventDefault();
     try {
       const newtask = {
@@ -35,7 +38,8 @@ const NewTask = ({ inputs, title }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {/* <Sidebar /> */}
+      {/* <NavSidebar /> */}
       <div className="newContainer">
         <AdminNavbar />
         <div className="top">
@@ -69,7 +73,7 @@ const NewTask = ({ inputs, title }) => {
 
               </div>
             </form>
-            <button onClick={handleClick}>Send</button>
+            <button onClick={handleClick} className="form-btn">Create Task</button>
           </div>
         </div>
       </div>

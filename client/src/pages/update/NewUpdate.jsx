@@ -4,6 +4,7 @@ import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const NewUpdate = ({ inputs }) => {
   const [info, setInfo] = useState({});
@@ -14,6 +15,8 @@ const NewUpdate = ({ inputs }) => {
   };
 
   const handleClick = async (e) => {
+
+    const button = document.getElementsByClassName("form-btn")
     e.preventDefault();
 
     try {
@@ -30,7 +33,8 @@ const NewUpdate = ({ inputs }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {/* <Sidebar /> */}
+      {/* <NavSidebar /> */}
       <div className="newContainer">
         <AdminNavbar />
         <div className="top">
@@ -51,7 +55,7 @@ const NewUpdate = ({ inputs }) => {
                 </div>
               ))}
             </form>
-            <button onClick={handleClick}>Send</button>
+            <button onClick={handleClick} class="form-btn">Create Update</button>
           </div>
         </div>
       </div>

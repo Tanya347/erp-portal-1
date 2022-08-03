@@ -47,14 +47,13 @@
 
 .mTitle {
     font-weight: 500;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 1.5rem;
     padding: 10px 0;
 }
 
 .mDesc {
     color: rgba(0, 0, 0, 0.699);
-    background-color: #ebe8f7;
     border-radius: 5px;
     padding: 5px 10px;
 }

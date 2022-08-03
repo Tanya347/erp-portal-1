@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { roles } from "../../source/formsource/teamsAndRole"
 import useFetch from "../../hooks/useFetch";
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const EditTask = ({ title }) => {
   const location = useLocation();
@@ -43,7 +44,8 @@ const EditTask = ({ title }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {/* <Sidebar /> */}
+      {/* <NavSidebar /> */}
       <div className="newContainer">
         <AdminNavbar />
         <div className="top">
@@ -100,7 +102,7 @@ const EditTask = ({ title }) => {
 
               </div>
             </form>
-            <button onClick={handleClick}>Send</button>
+            <button onClick={handleClick}>Edit Task</button>
           </div>
         </div>
       </div>

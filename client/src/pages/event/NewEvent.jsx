@@ -16,28 +16,38 @@ const NewEvent = ({ inputs, title }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "upload");
+    if (file) {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "upload");
 
-    try {
-      const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dnzkakna0/image/upload",
-        data, {
-        withCredentials: false
+      try {
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/dnzkakna0/image/upload",
+          data, {
+          withCredentials: false
+        }
+        )
+        const { url } = uploadRes.data;
+        const { public_id } = uploadRes.data;
+        const newevent = {
+          ...info, poster: url, cloud_id: public_id
+        }
+
+        axios.post("http://localhost:5500/api/events", newevent, { withCredentials: false })
+        navigate(-1)
+
+      } catch (error) {
+        console.log(error)
       }
-      )
-      const { url } = uploadRes.data;
-      const { public_id } = uploadRes.data;
-      const newevent = {
-        ...info, poster: url, cloud_id: public_id
+    } else {
+      try {
+        await axios.post("http://localhost:5500/api/events", info)
+        navigate(-1)
       }
-
-      axios.post("http://localhost:5500/api/events", newevent, { withCredentials: false })
-      navigate(-1)
-
-    } catch (error) {
-      console.log(error)
+      catch (err) {
+        console.log(err)
+      }
     }
   }
 
@@ -82,7 +92,7 @@ const NewEvent = ({ inputs, title }) => {
                   <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id} />
                 </div>
               ))}
-              <button onClick={handleClick}>Send</button>
+              <button onClick={handleClick}>Create Event</button>
             </form>
           </div>
         </div>

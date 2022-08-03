@@ -6,11 +6,15 @@ import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
 import Sidebar from "../../components/sidebar/Sidebar";
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
+import { useState } from "react";
 
 const Home = ({ type }) => {
+
   return (
     <div className="home">
-      {type === "Admin" && <Sidebar />}
+      {/* {type === "Admin" && <Sidebar />} */}
+      {/* {type === "Admin" && <NavSidebar />} */}
       <div className="AdminHomeContainer">
         {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
         <div className="widgets">

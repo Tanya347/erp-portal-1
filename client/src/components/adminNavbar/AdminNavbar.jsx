@@ -1,28 +1,23 @@
 import "./adminNavbar.scss";
-// import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-// import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
-// import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-// import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import NavSidebar from "../NavSidebar/NavSidebar";
+import { motion } from "framer-motion";
+
 
 const AdminNavbar = () => {
   const { Dispatch } = useContext(DarkModeContext);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   return (
     <div className="AdminNavbar">
+      {openSidebar && <NavSidebar setOpen={setOpenSidebar} />}
       <div className="wrapper">
 
         <div className="items">
 
-          {/* Language Icon */}
-
-          {/* <div className="item">
-            <LanguageOutlinedIcon className="icon" />
-            English
-          </div> */}
           <div className="item">
             <DarkModeOutlinedIcon
               className="icon"
@@ -30,38 +25,10 @@ const AdminNavbar = () => {
             />
           </div>
 
-          {/* Fullscreen */}
-
-          {/* <div className="item">
-            <FullscreenExitOutlinedIcon className="icon" />
-          </div> */}
-
-          {/* Notifications */}
-
-          {/* <div className="item">
-            <NotificationsNoneOutlinedIcon className="icon" />
-            <div className="counter">1</div>
-          </div> */}
-
-          {/* Chats */}
-
-          {/* <div className="item">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter">2</div>
-          </div> */}
-          <div className="item">
+          <div className="item" onClick={() => setOpenSidebar(true)}>
             <ListOutlinedIcon className="icon" />
           </div>
 
-          {/* Profile */}
-
-          {/* <div className="item">
-            <img
-              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-              className="avatar"
-            />
-          </div> */}
         </div>
       </div>
     </div>

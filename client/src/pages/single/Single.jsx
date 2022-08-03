@@ -6,6 +6,7 @@ import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import EditIcon from '@mui/icons-material/Edit';
 import FolderIcon from '@mui/icons-material/Folder';
 import useFetch from "../../hooks/useFetch";
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const Single = ({ type }) => {
   const location = useLocation();
@@ -19,7 +20,8 @@ const Single = ({ type }) => {
 
   return (
     <div className="single">
-      {type === "Admin" && <Sidebar />}
+      {/* {type === "Admin" && <Sidebar />} */}
+      {/* {type === "Admin" && <NavSidebar />} */}
 
       <div className="singleContainer">
         {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
@@ -28,7 +30,7 @@ const Single = ({ type }) => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src={data.img || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
+                src={data.profilePicture || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
                 alt=""
                 className="itemImg"
               />
