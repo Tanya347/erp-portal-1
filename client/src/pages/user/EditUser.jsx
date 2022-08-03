@@ -8,6 +8,7 @@ import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { useNavigate, useLocation } from "react-router-dom";
 import { roles, teams, integ_subteams, team_subteams } from "../../source/formsource/teamsAndRole"
 import useFetch from "../../hooks/useFetch";
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const EditUser = ({ title, type }) => {
 
@@ -76,7 +77,8 @@ const EditUser = ({ title, type }) => {
 
   return (
     <div className="new">
-      {type === "Admin" && <Sidebar />}
+      {/* {type === "Admin" && <Sidebar />} */}
+      {/* {type === "Admin" && <NavSidebar />} */}
       <div className="newContainer">
         {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
         <div className="top">

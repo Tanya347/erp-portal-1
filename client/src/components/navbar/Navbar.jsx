@@ -3,18 +3,19 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
+import NavSidebar from "../NavSidebar/NavSidebar";
 
 const Navbar = () => {
   const { Dispatch } = useContext(DarkModeContext);
   const { data } = useFetch(`/updates`)
   const { user } = useContext(AuthContext)
-
   const { dispatch } = useContext(AuthContext)
-
+  const [openNotif, setOpenNotif] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = async (e) => {
@@ -23,19 +24,11 @@ const Navbar = () => {
   }
 
   const handleNotif = () => {
-    const btn = document.getElementById("notif-menu");
-    if (btn.style.display === "none")
-      btn.style.display = "block"
-    else
-      btn.style.display = "none"
+    setOpenNotif(!openNotif)
   }
 
   const handleMenu = () => {
-    const btn = document.getElementById("menu");
-    if (btn.style.display === "none")
-      btn.style.display = "block"
-    else
-      btn.style.display = "none"
+    setOpenMenu(!openMenu)
   }
 
   return (
@@ -60,7 +53,7 @@ const Navbar = () => {
             <NotificationsNoneOutlinedIcon className="icon" onClick={handleNotif} />
             <div className="counter">{data.length}</div>
           </div>
-          <ul id="notif-menu">
+          {openNotif && <ul id="notif-menu">
             {data.map((item) => (
               <li>
                 <h3>{item.title}</h3>
@@ -72,14 +65,14 @@ const Navbar = () => {
                 View all new updates
               </li>
             </Link>
-          </ul>
+          </ul>}
 
           {/* Menu */}
 
           <div className="item" onClick={handleMenu}>
             <ListOutlinedIcon className="icon" />
           </div>
-          <ul id="menu">
+          {openMenu && <ul id="menu">
             <Link to="/" style={{ textDecoration: "none" }}>
               <li><h3>Dashboard</h3></li>
             </Link>
@@ -90,19 +83,17 @@ const Navbar = () => {
               {user.subteam === "Technical Team" && <li><h3>Create Event</h3></li>}
             </Link>
             <li onClick={handleClick}><h3>Logout</h3></li>
-          </ul>
+          </ul>}
 
           {/* Profile */}
 
           <div className="item">
-            {/* <Link to={`users/${user._id}`}> */}
             <img
               src={user.profilePicture || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
               alt=""
               className="avatar"
               onClick={() => navigate(`/users/${user._id}`)}
             />
-            {/* </Link> */}
           </div>
         </div>
       </div>

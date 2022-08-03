@@ -6,6 +6,7 @@ import axios from "axios"
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { useNavigate } from "react-router-dom";
 import { roles, teams, integ_subteams, team_subteams } from "../../source/formsource/teamsAndRole"
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const NewUser = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -59,7 +60,8 @@ const NewUser = ({ inputs, title }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {/* <Sidebar /> */}
+      {/* <NavSidebar /> */}
       <div className="newContainer">
         <AdminNavbar />
         <div className="top">

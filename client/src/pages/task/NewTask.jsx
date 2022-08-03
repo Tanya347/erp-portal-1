@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { roles } from "../../source/formsource/teamsAndRole"
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const NewTask = ({ inputs, title }) => {
 
@@ -37,7 +38,8 @@ const NewTask = ({ inputs, title }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {/* <Sidebar /> */}
+      {/* <NavSidebar /> */}
       <div className="newContainer">
         <AdminNavbar />
         <div className="top">

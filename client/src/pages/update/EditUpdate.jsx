@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useEffect } from "react";
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 
 const EditUpdate = ({ title }) => {
@@ -41,7 +42,8 @@ const EditUpdate = ({ title }) => {
 
   return (
     <div className="new">
-      <Sidebar />
+      {/* <NavSidebar /> */}
+      {/* <Sidebar /> */}
       <div className="newContainer">
         <AdminNavbar />
         <div className="top">
