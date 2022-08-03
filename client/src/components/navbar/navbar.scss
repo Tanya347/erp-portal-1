@@ -1,4 +1,4 @@
-.AdminNavbar {
+.navbar {
   height: 50px;
   border-bottom: 0.5px solid rgb(231, 228, 228);
   display: flex;
@@ -22,7 +22,7 @@
         list-style: none;
         background-color: #edebf4;
         top: 50px;
-        left: 250px;
+        right: 50px;
         width: 200px;
         padding-left: 0;
         -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);

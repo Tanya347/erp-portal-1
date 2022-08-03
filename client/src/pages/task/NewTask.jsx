@@ -1,11 +1,9 @@
 import "./newTask.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
 import AdminNavbar from "../../components/adminNavbar/AdminNavbar";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { roles } from "../../source/formsource/teamsAndRole"
-import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 const NewTask = ({ inputs, title }) => {
 
