@@ -3,7 +3,7 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
@@ -16,14 +16,15 @@ const Navbar = () => {
   const [openNotif, setOpenNotif] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
 
-
   const navigate = useNavigate();
-
 
   const handleNotif = () => {
     setOpenNotif(!openNotif)
   }
 
+  useEffect(() => {
+    data.filter((d) => d.status === "Old")
+  }, [data])
 
   return (
     <div className="navbar">
@@ -36,7 +37,6 @@ const Navbar = () => {
         </Link>
 
         <div className="items">
-
 
           <div className="item">
             <DarkModeOutlinedIcon

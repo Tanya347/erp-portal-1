@@ -4,7 +4,6 @@ import { AuthContext } from "../context/AuthContext";
 
 //datatable columns
 import { userColumns } from "../source/datatablesource/userColumns";
-import { eventColumns } from "../source/datatablesource/eventColumns";
 import { taskColumns } from "../source/datatablesource/taskColumns";
 import { updateColumns } from "../source/datatablesource/updateColumns";
 
@@ -137,7 +136,6 @@ function AdminRoutes() {
                 {/* list of events */}
                 <Route path="/admin/events" element={
                     <RequireAuth>
-                        <List column={updateColumns} name="Event" type="Admin" />
                     </RequireAuth>
                 } />
 

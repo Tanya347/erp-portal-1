@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const UpdateSchema = new mongoose.Schema({
+const QuerySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -8,11 +8,7 @@ const UpdateSchema = new mongoose.Schema({
     desc: {
         type: String,
         required: true
-    },
-    status: {
-        type: String,
-        default: "New"
     }
 }, { timestamps: true })
 
-export default mongoose.model("Update", UpdateSchema);
+export default mongoose.model("Query", QuerySchema);

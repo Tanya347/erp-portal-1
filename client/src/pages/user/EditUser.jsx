@@ -63,7 +63,7 @@ const EditUser = ({ title, type }) => {
       }
     } else {
       try {
-        await axios.put(`http://localhost:5500/api/users/${id}`, info)
+        await axios.put(`http://localhost:5500/api/users/${id}`, info, { withCredentials: false })
         navigate(-1)
       }
       catch (err) {

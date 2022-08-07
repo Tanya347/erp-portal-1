@@ -1,15 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from "framer-motion";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import TaskIcon from '@mui/icons-material/Task';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import EventIcon from '@mui/icons-material/Event';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 import CloseIcon from '@mui/icons-material/Close';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EditIcon from '@mui/icons-material/Edit';
@@ -19,12 +15,14 @@ import { Link } from 'react-router-dom';
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { DarkModeContext } from "../../context/darkModeContext";
+import Query from '../query/Query';
 
 
 const NavSidebar = ({ setOpen }) => {
 
     const { Dispatch } = useContext(DarkModeContext);
     const { dispatch, user } = useContext(AuthContext)
+    const [openQuery, setOpenQuery] = useState(false);
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -74,12 +72,10 @@ const NavSidebar = ({ setOpen }) => {
                         }
                     </Link>
 
-                    <Link to="#" style={{ textDecoration: "none" }}>
-                        <li>
-                            <ContactSupportIcon className="icon" />
-                            <span>Query</span>
-                        </li>
-                    </Link>
+                    <li onClick={() => setOpenQuery(true)}>
+                        <ContactSupportIcon className="icon" />
+                        <span>Query</span>
+                    </li>
 
 
                     <p className="title">User</p>
@@ -112,6 +108,7 @@ const NavSidebar = ({ setOpen }) => {
                     </div>
                 </ul>
             </motion.div >
+            {openQuery && <Query setOpen={setOpenQuery} user={user} />}
         </div >
     )
 }
