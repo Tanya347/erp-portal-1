@@ -100,7 +100,7 @@ const EditTask = ({ title }) => {
 
               </div>
             </form>
-            <button onClick={handleClick}>Edit Task</button>
+            <button onClick={handleClick} id="submit">Edit Task</button>
           </div>
         </div>
       </div>

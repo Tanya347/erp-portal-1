@@ -259,7 +259,7 @@ const EditUser = ({ title, type }) => {
               </div>}
 
             </form>
-            <button disabled={sending} onClick={handleClick}>Edit User</button>
+            <button disabled={sending} id="submit" onClick={handleClick}>Edit User</button>
           </div>
         </div>
       </div>

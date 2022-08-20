@@ -12,12 +12,6 @@ export const eventInputs = [
         placeholder: "Enter Event Description",
     },
     {
-        id: "date",
-        label: "Event Date",
-        type: "date",
-        placeholder: "Select Dates(s)",
-    },
-    {
         id: "venue",
         label: "Venue",
         type: "text",

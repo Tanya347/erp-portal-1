@@ -5,14 +5,20 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
 
 const NewEvent = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [start, setStart] = useState("")
+  const [end, setEnd] = useState("")
   const navigate = useNavigate();
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   }
+
+  console.log(start);
+  console.log(end)
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -31,9 +37,9 @@ const NewEvent = ({ inputs, title }) => {
         const { url } = uploadRes.data;
         const { public_id } = uploadRes.data;
         const newevent = {
-          ...info, poster: url, cloud_id: public_id
+          ...info, poster: url, cloud_id: public_id, startDate: start, endDate: end
         }
-
+        console.log(newevent)
         axios.post("http://localhost:5500/api/events", newevent, { withCredentials: false })
         navigate(-1)
 
@@ -42,7 +48,10 @@ const NewEvent = ({ inputs, title }) => {
       }
     } else {
       try {
-        await axios.post("http://localhost:5500/api/events", info)
+        const newevent = {
+          ...info, startDate: start, endDate: end
+        }
+        await axios.post("http://localhost:5500/api/events", newevent, { withCredentials: false })
         navigate(-1)
       }
       catch (err) {
@@ -51,12 +60,12 @@ const NewEvent = ({ inputs, title }) => {
     }
   }
 
-  console.log(info)
 
   return (
+
     <div className="new">
       {/* <Sidebar /> */}
-      <div className="newContainer">
+      <div className="newEventContainer">
         <Navbar />
         <div className="top">
           <h1>{title}</h1>
@@ -86,13 +95,30 @@ const NewEvent = ({ inputs, title }) => {
                 />
               </div>
 
+              <DatePicker
+                class="date-picker"
+                showTimeSelect
+                placeholderText="Start Date"
+                style={{ marginRight: "10px" }}
+                selected={start}
+                onChange={(start) => setStart(start)}
+              />
+              <DatePicker
+                class="date-picker"
+                showTimeSelect
+                placeholderText="End Date"
+                selected={end}
+                onChange={(end) => setEnd(end)}
+              />
+
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id} />
                 </div>
               ))}
-              <button onClick={handleClick}>Create Event</button>
+
+              <button onClick={handleClick} id="submit">Create Event</button>
             </form>
           </div>
         </div>
