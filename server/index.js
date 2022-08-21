@@ -12,6 +12,7 @@ import authRoute from "./routes/auth.js";
 import taskRoute from "./routes/tasks.js";
 import updateRoute from "./routes/updates.js";
 import eventRoute from "./routes/events.js";
+import queryRoute from "./routes/queries.js";
 
 //config and middlewares
 const app = express();
@@ -64,6 +65,7 @@ app.use("/api/users", userRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/updates", updateRoute);
 app.use("/api/events", eventRoute);
+app.use("/api/queries", queryRoute);
 
 //listen on port
 

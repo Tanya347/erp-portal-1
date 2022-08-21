@@ -83,7 +83,7 @@ const EditUpdate = ({ title }) => {
                 />
               </div>
             </form>
-            <button onClick={handleClick}>Edit Update</button>
+            <button onClick={handleClick} id="submit">Edit Update</button>
           </div>
         </div>
       </div>

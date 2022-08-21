@@ -4,7 +4,6 @@ import { AuthContext } from "../context/AuthContext";
 
 //datatable columns
 import { userColumns } from "../source/datatablesource/userColumns";
-import { eventColumns } from "../source/datatablesource/eventColumns";
 import { taskColumns } from "../source/datatablesource/taskColumns";
 import { updateColumns } from "../source/datatablesource/updateColumns";
 
@@ -18,6 +17,8 @@ import Single from "../pages/single/Single"
 import List from "../pages/list/List"
 import NewEvent from '../pages/event/NewEvent';
 import EditUser from '../pages/user/EditUser'
+import Events from '../pages/event/Events';
+import EditEvent from '../pages/event/EditEvent';
 
 function AdminRoutes() {
     const { user } = useContext(AuthContext)
@@ -74,10 +75,23 @@ function AdminRoutes() {
                     </RequireAuth>
                 } />
 
+                {/* events */}
+                <Route path="/events" element={
+                    <RequireAuth>
+                        <Events />
+                    </RequireAuth>
+                } />
+
                 {/* create events page */}
                 <Route path="/newEvent" element={
                     <RequireAuth>
                         <NewEvent inputs={eventInputs} title="Add New Event" />
+                    </RequireAuth>
+                } />
+
+                <Route path="/events/:id" element={
+                    <RequireAuth>
+                        <EditEvent inputs={eventInputs} title="Edit Event" />
                     </RequireAuth>
                 } />
             </Routes >

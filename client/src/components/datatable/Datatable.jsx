@@ -9,7 +9,7 @@ import Modal from "../../components/modal/Modal";
 
 const Datatable = ({ column, name, type }) => {
   const location = useLocation();
-
+  console.log(column)
   let path
   if (type === "Admin")
     path = location.pathname.split("/")[2];

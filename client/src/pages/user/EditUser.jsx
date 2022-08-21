@@ -63,7 +63,7 @@ const EditUser = ({ title, type }) => {
       }
     } else {
       try {
-        await axios.put(`http://localhost:5500/api/users/${id}`, info)
+        await axios.put(`http://localhost:5500/api/users/${id}`, info, { withCredentials: false })
         navigate(-1)
       }
       catch (err) {
@@ -75,15 +75,12 @@ const EditUser = ({ title, type }) => {
 
   return (
     <div className="new">
-      {/* {type === "Admin" && <Sidebar />} */}
-      {/* {type === "Admin" && <NavSidebar />} */}
       <div className="newContainer">
         {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
         <div className="top">
           <h1>{title}</h1>
         </div>
         <div className="bottom">
-
           <div className="left">
             <img
               src={
@@ -259,7 +256,7 @@ const EditUser = ({ title, type }) => {
               </div>}
 
             </form>
-            <button disabled={sending} onClick={handleClick}>Edit User</button>
+            <button disabled={sending} id="submit" onClick={handleClick}>Edit User</button>
           </div>
         </div>
       </div>
