@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from "../../hooks/useFetch";
+import EventModal from "../../components/eventModal/EventModal";
 
 const NewEvent = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -64,10 +65,19 @@ const NewEvent = ({ inputs, title }) => {
   }
 
   const [openForm, setOpenForm] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [clickedEvent, setClickedEvent] = useState({});
 
   useEffect(() => {
     setList(data.filter((item) => (item["teamName"] === user.team)))
   }, [data])
+
+  const handleEventPopup = (id) => {
+    const event = data.filter((item) => { return item["_id"] === id }
+    );
+    setClickedEvent(event[0]);
+    setOpenModal(true)
+  }
 
   console.log(list)
 
@@ -144,12 +154,14 @@ const NewEvent = ({ inputs, title }) => {
                 {item.poster ? <img id="post-image" src={item.poster} alt="" /> : "no image"}
                 <h4>{item.name}</h4>
                 <p>{item.desc.slice(0, 60)}...</p>
-                <button>View</button>
+                <button onClick={() => handleEventPopup(item._id)}>View</button>
               </div>
             </div>
           ))}
         </div>}
       </div>
+
+      {openModal && <EventModal setOpen={setOpenModal} event={clickedEvent} isUser="true" />}
     </div>
   );
 };

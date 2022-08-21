@@ -10,7 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 import NavSidebar from "../navSidebar/NavSidebar"
 
 const Navbar = () => {
-  const { Dispatch } = useContext(DarkModeContext);
+  const { Dispatch, darkMode } = useContext(DarkModeContext);
   const { data } = useFetch(`/updates`)
   const { user } = useContext(AuthContext)
   const [openNotif, setOpenNotif] = useState(false);
@@ -26,6 +26,7 @@ const Navbar = () => {
     data.filter((d) => d.status === "Old")
   }, [data])
 
+
   return (
     <div className="navbar">
       {openSidebar && <NavSidebar setOpen={setOpenSidebar} />}
@@ -33,7 +34,7 @@ const Navbar = () => {
       <div className="wrapper">
 
         <Link to="/">
-          <p className=""><img src={process.env.PUBLIC_URL + "/Assets/brand.png"} height="60px" alt="" /></p>
+          {darkMode ? <p className="brand"><img src={process.env.PUBLIC_URL + "/Assets/brand2.png"} height="60px" alt="" /></p> : <p className="brand"><img src={process.env.PUBLIC_URL + "/Assets/brand.png"} height="60px" alt="" /></p>}
         </Link>
 
         <div className="items">

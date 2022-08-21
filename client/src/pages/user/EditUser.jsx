@@ -75,15 +75,12 @@ const EditUser = ({ title, type }) => {
 
   return (
     <div className="new">
-      {/* {type === "Admin" && <Sidebar />} */}
-      {/* {type === "Admin" && <NavSidebar />} */}
       <div className="newContainer">
         {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
         <div className="top">
           <h1>{title}</h1>
         </div>
         <div className="bottom">
-
           <div className="left">
             <img
               src={

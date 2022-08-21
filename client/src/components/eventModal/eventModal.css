@@ -16,7 +16,7 @@
     background-color: white;
     height: fit-content;
     position: relative;
-    width: 60%;
+    width: 70%;
 }
 
 .eventModal .mEvents {
@@ -43,7 +43,7 @@
 }
 
 .eventModal .mLeft img {
-    height: 400px;
+    height: 300px;
 }
 
 .eventModal .mEvents p {
@@ -86,6 +86,27 @@
     padding: 5px 10px;
 }
 
+.crudButton {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.crudButton button {
+    padding: 5px 20px;
+    margin: 10px 10px;
+    background-color: #5353AF;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: bolder;
+}
+
+.crudButton button:hover {
+    transform: translateY(-2px);
+    background-color: #7551f8a1;
+}
+
 .eventModal .mButton {
     border: none;
     padding: 10px 20px;
@@ -94,7 +115,7 @@
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
-    width: 100%;
+    width: 80%;
     text-decoration: none;
     margin-top: 20px;
     transition: all 0.2s ease-in-out;
