@@ -2,23 +2,26 @@ import "./newEvent.scss";
 // import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import useFetch from "../../hooks/useFetch";
 
 const NewEvent = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
   const [start, setStart] = useState("")
   const [end, setEnd] = useState("")
+  const { user } = useContext(AuthContext)
+  const [list, setList] = useState([])
+  const { data } = useFetch('/events')
   const navigate = useNavigate();
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   }
-
-  console.log(start);
-  console.log(end)
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -60,6 +63,13 @@ const NewEvent = ({ inputs, title }) => {
     }
   }
 
+  const [openForm, setOpenForm] = useState(false);
+
+  useEffect(() => {
+    setList(data.filter((item) => (item["teamName"] === user.team)))
+  }, [data])
+
+  console.log(list)
 
   return (
 
@@ -67,61 +77,78 @@ const NewEvent = ({ inputs, title }) => {
       {/* <Sidebar /> */}
       <div className="newEventContainer">
         <Navbar />
-        <div className="top">
-          <h1>{title}</h1>
+        <div className="eventsButton">
+          <button onClick={() => setOpenForm(false)} >View Events</button>
+          <button onClick={() => setOpenForm(true)} >Create Events</button>
         </div>
-        <div className="bottom">
-          <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-              }
-              alt=""
-            />
+        {openForm &&
+          <><div className="top">
+            <h1>{title}</h1>
           </div>
-          <div className="right">
-            <form>
-              <div className="formInput">
-                <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
+            <div className="bottom">
+              <div className="left">
+                <img
+                  src={
+                    file
+                      ? URL.createObjectURL(file)
+                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  }
+                  alt=""
                 />
               </div>
+              <div className="right">
+                <form>
+                  <div className="formInput">
+                    <label htmlFor="file">
+                      Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                    </label>
+                    <input
+                      type="file"
+                      id="file"
+                      onChange={(e) => setFile(e.target.files[0])}
+                      style={{ display: "none" }}
+                    />
+                  </div>
 
-              <DatePicker
-                class="date-picker"
-                showTimeSelect
-                placeholderText="Start Date"
-                style={{ marginRight: "10px" }}
-                selected={start}
-                onChange={(start) => setStart(start)}
-              />
-              <DatePicker
-                class="date-picker"
-                showTimeSelect
-                placeholderText="End Date"
-                selected={end}
-                onChange={(end) => setEnd(end)}
-              />
+                  <DatePicker
+                    class="date-picker"
+                    showTimeSelect
+                    placeholderText="Start Date"
+                    style={{ marginRight: "10px" }}
+                    selected={start}
+                    onChange={(start) => setStart(start)}
+                  />
+                  <DatePicker
+                    class="date-picker"
+                    showTimeSelect
+                    placeholderText="End Date"
+                    selected={end}
+                    onChange={(end) => setEnd(end)}
+                  />
 
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id} />
-                </div>
-              ))}
+                  {inputs.map((input) => (
+                    <div className="formInput" key={input.id}>
+                      <label>{input.label}</label>
+                      <input onChange={handleChange} type={input.type} placeholder={input.placeholder} id={input.id} />
+                    </div>
+                  ))}
 
-              <button onClick={handleClick} id="submit">Create Event</button>
-            </form>
-          </div>
-        </div>
+                  <button onClick={handleClick} id="submit">Create Event</button>
+                </form>
+              </div>
+            </div></>}
+        {!openForm && <div className="cardsContainer">
+          {list.map((item, i) => (
+            <div className="card" key={item._id}>
+              <div class="content">
+                {item.poster ? <img id="post-image" src={item.poster} alt="" /> : "no image"}
+                <h4>{item.name}</h4>
+                <p>{item.desc.slice(0, 60)}...</p>
+                <button>View</button>
+              </div>
+            </div>
+          ))}
+        </div>}
       </div>
     </div>
   );

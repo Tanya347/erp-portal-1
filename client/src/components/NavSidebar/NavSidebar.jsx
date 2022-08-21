@@ -38,7 +38,7 @@ const NavSidebar = ({ setOpen }) => {
                         <CloseIcon className='icon' onClick={() => setOpen(false)} />
                     </li>
                     <p className="title">Main</p>
-                    <Link to="/admin" style={{ textDecoration: "none" }}>
+                    <Link to="/" style={{ textDecoration: "none" }}>
                         <li>
                             <DashboardIcon className="icon" />
                             <span>Dashboard</span>
