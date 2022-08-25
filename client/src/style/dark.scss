@@ -1,15 +1,21 @@
 .app.dark {
-  background-color: #111;
+  // background: linear-gradient(rgb(4, 7, 48), rgb(15, 31, 113));
+  background-image: url(./body-background.png);
   color: white;
-
+  font-weight: 500;
 
   .chartGrid {
     stroke: rgba(228, 228, 228, 0.219);
   }
 
   .table {
-    background-color: #111;
-
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(14, 9, 121, 1) 70%,
+      rgba(0, 126, 255, 1) 150%
+    );
     .tableCell {
       color: white;
     }
@@ -29,7 +35,7 @@
   }
 
   .sidebar {
-    background-color: #111;
+    background: linear-gradient(rgb(11, 24, 85), rgb(4, 7, 48));
     border-color: #333;
 
     .top {
@@ -71,5 +77,100 @@
 
   input {
     background-color: transparent;
+  }
+
+  .modal,
+  .eventModal {
+    color: black;
+  }
+
+  .mTasks p span,
+  .eventModal .mEvents p span {
+    color: rgb(15, 31, 113);
+  }
+
+  .mClose,
+  .eventModal .mClose {
+    color: black;
+  }
+  .mClose:hover,
+  .eventModal .mClose:hover {
+    color: rgba(0, 0, 0, 0.699);
+  }
+  .mButton {
+    background-color: rgb(15, 31, 113);
+  }
+
+  .widget {
+    // background: linear-gradient(rgb(11, 24, 85), rgb(4, 7, 48));
+    background-image: url(./background-card-reports.png);
+
+    .left,
+    .right {
+      .title {
+        color: white;
+      }
+    }
+  }
+
+  .AdminFeatured {
+    background-image: url(./background-card-reports.png);
+
+    .top,
+    .bottom .title,
+    .desc,
+    .summary .item .itemTitle {
+      color: white;
+    }
+  }
+
+  .AdminChart {
+    background: linear-gradient(rgb(11, 24, 85), rgb(4, 7, 48));
+    color: white;
+  }
+
+  .rbc-off-range-bg {
+    background: rgb(15, 31, 113);
+  }
+  .rbc-today {
+    background: rgb(16, 11, 102);
+    background: linear-gradient(
+      0deg,
+      rgba(16, 11, 102, 1) 10%,
+      rgba(14, 9, 121, 1) 61%,
+      rgba(20, 123, 228, 1) 150%
+    );
+  }
+  .rbc-event-content,
+  .rbc-event {
+    background-image: url(./background-card-reports.png);
+  }
+  .rbc-btn-group button {
+    color: white;
+  }
+
+  .new .newContainer {
+    .top,
+    .bottom {
+      h1 {
+        color: white;
+      }
+      .right form .formInput input {
+        color: white;
+      }
+    }
+  }
+
+  .single .singleContainer .top .left .item .details {
+    .itemTitle {
+      color: white;
+    }
+
+    .detailItem {
+      .itemKey {
+        color: white;
+        margin-right: 5px;
+      }
+    }
   }
 }

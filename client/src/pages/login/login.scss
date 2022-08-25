@@ -1,22 +1,59 @@
 .AdminLogin {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: url(./body-background.png);
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  // align-items: center;
+  // justify-content: center;
+  mix-blend-mode: screen;
+}
+
+.left {
+  display: flex;
+  height: 100vh;
+  img {
+    height: 75vh;
+    padding-top: 20%;
+    padding-left: 15%;
+  }
 }
 
 .lContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20%;
 
-.lInput {
+  .l_heading {
+    h1 {
+      margin-bottom: 20px;
+      color: white;
+      font-size: 36px !important;
+      span {
+        color: green;
+        font-weight: 700;
+      }
+    }
+    p {
+      line-height: 155%;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: white;
+      // opacity: 0.65;
+      font-weight: 400;
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+  }
+  .lInput {
     height: 30px;
     padding: 10px;
-}
+  }
 
-.lButton {
+  .lButton {
     border: none;
     padding: 10px 20px;
     background-color: #0071c2;
@@ -24,9 +61,10 @@
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
-}
+  }
 
-.lButton:disabled {
+  .lButton:disabled {
     background-color: #0071c28c;
     cursor: not-allowed;
+  }
 }
