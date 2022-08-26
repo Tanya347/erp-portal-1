@@ -12,6 +12,7 @@ import NavSidebar from "../navSidebar/NavSidebar"
 const Navbar = () => {
   const { Dispatch, darkMode } = useContext(DarkModeContext);
   const { data } = useFetch(`/updates`)
+  const [notifs, setNotifs] = useState([])
   const { user } = useContext(AuthContext)
   const [openNotif, setOpenNotif] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -23,9 +24,10 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    data.filter((d) => d.status === "Old")
+    setNotifs(data.filter((d) => d.status === "New"))
   }, [data])
 
+  console.log(data)
 
   return (
     <div className="navbar">
@@ -50,10 +52,10 @@ const Navbar = () => {
 
           <div className="item" id="notif">
             <NotificationsNoneOutlinedIcon className="icon" onClick={handleNotif} />
-            <div className="counter">{data.length}</div>
+            <div className="counter">{notifs.length}</div>
           </div>
           {openNotif && <ul id="notif-menu">
-            {data.map((item) => (
+            {notifs.map((item) => (
               <li>
                 <h3>{item.title}</h3>
                 <p>{item.desc.slice(0, 25)} ...</p>
