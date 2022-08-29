@@ -10,27 +10,53 @@ import { useState } from "react";
 const Home = ({ type }) => {
 
   return (
-    <div className="home">
-      {/* {type === "Admin" && <Sidebar />} */}
-      {/* {type === "Admin" && <NavSidebar />} */}
-      <div className="AdminHomeContainer">
-        {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
-        <div className="widgets">
-          <Widget type="user" />
-          <Widget type="order" />
-          <Widget type="earning" />
-          <Widget type="balance" />
+    <>
+      <div className="hidden md:flex">
+        <div className="home">
+          {/* {type === "Admin" && <Sidebar />} */}
+          {/* {type === "Admin" && <NavSidebar />} */}
+          <div className="AdminHomeContainer">
+            {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
+            <div className="widgets">
+              <Widget type="user" />
+              <Widget type="order" />
+              <Widget type="earning" />
+              <Widget type="balance" />
+            </div>
+            <div className="charts">
+              <Featured />
+              <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+            </div>
+            <div className="AdminListContainer">
+              <div className="listTitle">Upcoming Events</div>
+              <Table type="updates" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="md:hidden">
+        <div className="">
+          {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
+          <div className="widgets">
+              <Widget type="user" />
+              <Widget type="order" />
+              <Widget type="earning" />
+              <Widget type="balance" />
+          </div>
         </div>
         <div className="charts">
           <Featured />
           <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
         </div>
-        <div className="AdminListContainer">
+        {/* <div className="AdminListContainer">
           <div className="listTitle">Upcoming Events</div>
           <Table type="updates" />
-        </div>
+        </div> */}
       </div>
-    </div>
+
+      
+    </>
   );
 };
 

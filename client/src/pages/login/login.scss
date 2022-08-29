@@ -1,3 +1,5 @@
+@import "responsiveLogin.scss";
+
 .AdminLogin {
   background: url(./body-background.png);
   background-size: cover;
@@ -12,6 +14,10 @@
 .left {
   display: flex;
   height: 100vh;
+
+  @include tablet{
+    display: none;
+  }
   img {
     height: 75vh;
     padding-top: 20%;
@@ -20,18 +26,35 @@
 }
 
 .lContainer {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
   margin: 20%;
 
+  @include mobile{
+    margin-top: 0;
+  }
+
+  @include tablet{
+    margin-left: 25%;
+  }
+
+  .lLogo{
+    @include tablet{
+      margin-left: -20%;
+      margin-top: -30%;
+    }
+  }
+
   .l_heading {
     h1 {
       margin-bottom: 20px;
       color: white;
       font-size: 36px !important;
+      @include tablet{
+        font-size: 66px !important;
+      }
       span {
         color: green;
         font-weight: 700;
@@ -46,11 +69,23 @@
       font-weight: 400;
       max-width: 200px;
       margin-bottom: 20px;
+
+      @include tablet{
+        font-size: 44px;
+        max-width: 600px;
+      }
     }
   }
   .lInput {
     height: 30px;
     padding: 10px;
+
+    @include tablet{
+      height: 60px;
+      width: 260px;
+      margin-left: -20%;
+      font-size: 28px;
+    }
   }
 
   .lButton {
@@ -61,6 +96,14 @@
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
+
+    @include tablet{
+      height: 60px;
+      width: 180px;
+      margin-left: -20%;
+      font-size: 28px;
+      margin-top: 10px;
+    }
   }
 
   .lButton:disabled {

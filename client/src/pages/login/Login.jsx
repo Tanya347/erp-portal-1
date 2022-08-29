@@ -51,8 +51,15 @@ function Login({ type }) {
       <div className="left">
         <img src={bg} alt="" />
       </div>
-      <div className="lContainer">
+      <div className="flex lContainer">
         {/* <img src={bg2} alt="" /> */}
+        <div className="block lg:hidden w-20 md:w-28 lLogo">
+          <img 
+          src={bg}
+          alt="csd-logo"
+          className='w-full h-full'
+          />
+        </div>
         <div className="l_heading">
           <h1>
             We are <span>CSD</span>
@@ -78,6 +85,13 @@ function Login({ type }) {
         </button>
         {error && <span>{error.message}</span>}
       </div>
+
+      {/* Start: Mobile/Tablet Screen */}
+          <div className="flex md:hidden flex-col justify-center">
+              
+
+          </div>
+      {/* End: Mobile/Tablet Screen */}
     </div>
   );
 }

@@ -9,7 +9,6 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CloseIcon from '@mui/icons-material/Close';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import EditIcon from '@mui/icons-material/Edit';
-
 import "./navSidebar.scss"
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
@@ -20,7 +19,7 @@ import Query from '../query/Query';
 
 const NavSidebar = ({ setOpen }) => {
 
-    const { Dispatch } = useContext(DarkModeContext);
+    const { Dispatch} = useContext(DarkModeContext);
     const { dispatch, user } = useContext(AuthContext)
     const [openQuery, setOpenQuery] = useState(false);
 
