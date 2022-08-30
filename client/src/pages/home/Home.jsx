@@ -25,7 +25,6 @@ const Home = ({ type }) => {
   })
 
   return (
-
     <div className="home">
       {/* {type === "Admin" && <Sidebar />} */}
       {/* {type === "Admin" && <NavSidebar />} */}
@@ -42,10 +41,9 @@ const Home = ({ type }) => {
           <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
         </div> */}
 
-        {/* <div className="AdminListContainer">
-          <div className="listTitle">Upcoming Events</div>
-          <Table type="updates" />
-        </div> */}
+
+
+
       </div>
     </div>
   );

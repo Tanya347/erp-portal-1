@@ -1,3 +1,5 @@
+@import "responsiveHome.scss";
+
 .home {
   display: flex;
 
@@ -13,6 +15,10 @@
 
     .charts {
       padding: 5px 20px;
+
+      // @include mobile{
+      //   margin: 30px 30px;
+      // }
     }
 
     .AdminListContainer {
